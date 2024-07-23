@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@iglidur-designer/header": [
+        "apps/iglidur-designer/src/app/libs/header/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
