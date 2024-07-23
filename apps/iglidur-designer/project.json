@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/iglidur-designer",
         "index": "apps/iglidur-designer/src/index.html",
         "main": "apps/iglidur-designer/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/iglidur-designer/tsconfig.app.json",
         "assets": [
           {
@@ -21,7 +25,10 @@
             "input": "apps/iglidur-designer/public"
           }
         ],
-        "styles": ["apps/iglidur-designer/src/styles.css"],
+        "styles": [
+          "apps/iglidur-designer/src/custom-theme.scss",
+          "apps/iglidur-designer/src/styles.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -74,7 +81,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/iglidur-designer/jest.config.ts"
       }
