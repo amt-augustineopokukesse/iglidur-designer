@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '@iglidur-designer/header';
 
 @Component({
   selector: 'app-model',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule],
   templateUrl: './model.component.html',
   styleUrl: './model.component.css',
 })
