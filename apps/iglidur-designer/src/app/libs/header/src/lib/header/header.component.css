@@ -2,4 +2,22 @@
     color: red;
     height: 7.5vh;
     background-color: rgb(54, 54, 54);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.menu-button {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background-color: rgb(194, 188, 188, 0.1);
+}
+
+.menu-icon {
+    color: white;
 }

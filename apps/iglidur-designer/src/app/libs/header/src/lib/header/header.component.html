@@ -1,6 +1,29 @@
 <div class="header">
-    <div class="logo">
-        
-    </div>
-    <div class="menu"></div>
+  <div class="logo">
+    <img src="assets/igus-logo.svg" alt="" />
+  </div>
+  <div class="menu">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+      class="menu-button"
+    >
+      <mat-icon class="menu-icon">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+  </div>
 </div>
