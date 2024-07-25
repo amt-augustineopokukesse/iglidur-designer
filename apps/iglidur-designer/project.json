@@ -27,7 +27,7 @@
         ],
         "styles": [
           "apps/iglidur-designer/src/custom-theme.scss",
-          "apps/iglidur-designer/src/styles.css"
+          "apps/iglidur-designer/src/styles.scss"
         ],
         "scripts": []
       },

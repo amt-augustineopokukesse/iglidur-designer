@@ -1,0 +1,47 @@
+.header {
+    color: red;
+    height: 3.5rem;
+    background-color: rgb(54, 54, 54);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    .menu-section {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .menu-options {
+            display: flex;
+            height: inherit;
+            height: inherit;
+            .menu-option {
+                color: white;
+                display: flex;
+                gap: 10px;
+                height: inherit;
+                cursor: pointer;
+                padding: 0 10px;
+                &:hover {
+                    background-color: rgb(194, 188, 188, 0.2);
+                }
+            }
+        }
+        .menu {
+            height: inherit;
+            .menu-button {
+                background-color: inherit;
+                border: none;
+                cursor: pointer;
+                height: inherit;
+                &:hover {
+                    background-color: rgb(194, 188, 188, 0.2);
+                }
+                .menu-icon {
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+

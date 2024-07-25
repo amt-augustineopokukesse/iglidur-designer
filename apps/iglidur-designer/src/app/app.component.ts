@@ -7,7 +7,7 @@ import { HeaderComponent } from '@iglidur-designer/header';
   imports: [RouterModule, HeaderComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'iglidur-designer';
