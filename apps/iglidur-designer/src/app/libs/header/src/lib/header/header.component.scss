@@ -6,9 +6,35 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: white;
+        .logo{
+            font-weight: 300;
+            font-size: 3rem;
+            text-decoration: line-through;
+            color: #f07d00;
+            margin: 0;
+        }
+        .title-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 1rem;
+            .title-text-content {
+                margin: 0;
+            }
+            .lower {
+                color: rgb(179, 179, 179);
+            }
+        }
+    }
     .menu-section {
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 100%;
         .menu-options {
             display: flex;
@@ -16,6 +42,7 @@
             .menu-option {
                 color: white;
                 display: flex;
+                align-items: center;
                 gap: 10px;
                 height: inherit;
                 cursor: pointer;
@@ -23,6 +50,7 @@
                 &:hover {
                     background-color: rgb(194, 188, 188, 0.2);
                 }
+                
             }
         }
         .menu {
