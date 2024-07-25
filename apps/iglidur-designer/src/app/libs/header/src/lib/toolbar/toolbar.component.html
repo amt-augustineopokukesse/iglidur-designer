@@ -1,3 +1,10 @@
 <div class="toolbar">
-
+  <nav mat-tab-nav-bar class="mat-tab-header">
+    @for (link of links; track link) {
+    <a mat-tab-link (click)="activeLink = link" [active]="activeLink === link" class="mat-tab-link">
+      {{ link }}
+    </a>
+    }
+    
+  </nav>
 </div>

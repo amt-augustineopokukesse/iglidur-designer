@@ -3,6 +3,21 @@
     background-color: #f07d00;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 2rem;
-}
+  
+    .mat-tab-header {
+      height: 100%;
+      width: 50%;
+      color: white;
+  
+      .mat-tab-link {
+        color: white; // Set the tab link text color to white
+  
+        &.mat-tab-label-active {
+          color: white; // Ensure the active tab link text color is also white
+        }
+      }
+    }
+  }
+  
