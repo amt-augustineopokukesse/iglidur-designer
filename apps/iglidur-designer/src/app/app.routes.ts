@@ -7,7 +7,7 @@ import { ProducibilityComponent } from './pages/producibility/producibility.comp
 export const appRoutes: Route[] = [
     { path: 'model', component: ModelComponent },
     { path: 'material', component: MaterialComponent },
-    { path: 'post-processing', component: PostProcessingComponent },
+    { path: 'postprocessing', component: PostProcessingComponent },
     { path: 'producibility', component: ProducibilityComponent },
     { path: '', redirectTo: 'model', pathMatch: 'full' },
     { path: '**', redirectTo: 'model' },
