@@ -75,11 +75,11 @@
     "@nx/angular:application": {
       "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "style": "css",
+      "style": "scss",
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "css"
+      "style": "scss"
     },
     "@nx/angular:library": {
       "linter": "eslint",
