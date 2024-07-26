@@ -20,6 +20,8 @@
         ],
         "tsConfig": "apps/iglidur-designer/tsconfig.app.json",
         "assets": [
+          "apps/iglidur-designer/src/favicon.ico",
+          "apps/iglidur-designer/src/assets",
           {
             "glob": "**/*",
             "input": "apps/iglidur-designer/public"
