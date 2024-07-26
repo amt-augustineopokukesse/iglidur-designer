@@ -1,0 +1,29 @@
+{
+    "header": {
+      "title-section": {
+        "title": "3D print custom components",
+        "label": "motion plastics"
+      },
+      "menu-section": {
+        "menu": [
+          {
+            "label": "連絡先",
+            "icon": "mail"
+          },
+          {
+            "label": "ショッピングカート",
+            "icon": "shopping_cart"
+          }
+        ]
+      }
+    },
+    "toolbar": {
+      "menu": ["モデル", "素材", "後処理", "生産性"]
+    },
+    "model": {
+      "hero": {
+        "title": "3D print custom components",
+        "description": "CADモデルをアップロードし、製造手順と材料を選択するだけです。すぐに価格と納期を確認し、お客様のアプリケーションでのコンポーネントの耐用年数を計算し、オンラインで直接注文することができます。"
+      }
+    }
+  }

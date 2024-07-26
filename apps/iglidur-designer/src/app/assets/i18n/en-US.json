@@ -1,0 +1,29 @@
+{
+    "header": {
+      "title-section": {
+        "title": "3D print custom components",
+        "label": "motion plastics"
+      },
+      "menu-section": {
+        "menu": [
+          {
+            "label": "Contact",
+            "icon": "mail"
+          },
+          {
+            "label": "Shopping cart",
+            "icon": "shopping_cart"
+          }
+        ]
+      }
+    },
+    "toolbar": {
+      "menu": ["MODEL", "MATERIAL", "POST-PROCESSING", "PRODUCIBILITY"]
+    },
+    "model": {
+      "hero": {
+        "title": "3D print custom components",
+        "description": "The individual component is created in just a few steps: upload the CAD model, select a manufacturing procedure and material - that's it. You can immediately see the price and delivery time, calculate the service life of the component in your application and order directly online."
+      }
+    }
+  }
