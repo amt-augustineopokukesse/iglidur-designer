@@ -1,0 +1,18 @@
+{
+  "HERO": {
+    "TITLE": {
+      "de-DE": "3D drucken individuelle Bauteile",
+      "en-UK": "3D print custom components",
+      "en-US": "3D print custom components",
+      "fr-FR": "Impression 3D de composants personnalisés",
+      "ja-JP": "カスタム部品の3Dプリント"
+    },
+    "TEXT": {
+      "de-DE": "In wenigen Schritten ist das individuelle Bauteil erstellt: CAD-Modell hochladen, Fertigungsverfahren und Material auswählen - fertig. Sie sehen sofort den Preis und die Lieferzeit, berechnen die Lebensdauer des Bauteils in Ihrer Anwendung und bestellen direkt online.",
+      "en-UK": "The individual component is created in just a few steps: upload the CAD model, select a manufacturing procedure and material - that's it. You can immediately see the price and delivery time, calculate the service life of the component in your application and order directly online.",
+      "en-US": "The individual component is created in just a few steps: upload the CAD model, select a manufacturing procedure and material - that's it. You can immediately see the price and delivery time, calculate the service life of the component in your application and order directly online.",
+      "fr-FR": "Le composant individuel est créé en quelques étapes seulement : téléchargez le modèle CAO, sélectionnez une procédure de fabrication et un matériau - c'est tout. Vous pouvez voir immédiatement le prix et le délai de livraison, calculer la durée de vie du composant dans votre application et commander directement en ligne.",
+      "ja-JP": "CADモデルをアップロードし、製造手順と材料を選択するだけです。すぐに価格と納期を確認し、お客様のアプリケーションでのコンポーネントの耐用年数を計算し、オンラインで直接注文することができます。"
+    }
+  }
+}
