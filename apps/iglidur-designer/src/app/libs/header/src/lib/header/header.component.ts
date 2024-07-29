@@ -12,9 +12,9 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  lang = 'ja-JP';
+  lang = 'fr-FR';
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('header.component.i18n');
-    // this.translate.use('en-UK');
+    // this.translate.setDefaultLang('header.component.i18n');
+    this.translate.use('header.component.i18n');
   }
 }
