@@ -3,7 +3,7 @@
     <p class="logo">igus</p>
     <div class="title-text">
       <label class="title-text-content upper">{{
-        'header.title-section.title' | translate
+        'TITLE.' + lang | translate
       }}</label
       ><label class="title-text-content lower"
         >motion plastics<sup>®</sup></label
@@ -19,7 +19,7 @@
           fontIcon="mail"
         ></mat-icon>
         <p>{{
-            'header.title-section.title' | translate
+            'MENU-LABEL1.' + lang | translate
           }}</p>
       </div>
       <div class="menu-option">
@@ -28,7 +28,9 @@
           aria-label="Example home icon"
           fontIcon="shopping_cart"
         ></mat-icon>
-        <p>Shopping cart</p>
+        <p>{{
+            'MENU-LABEL2.' + lang | translate
+          }}</p>
       </div>
     </div>
     <div class="menu">

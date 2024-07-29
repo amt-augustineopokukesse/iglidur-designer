@@ -12,10 +12,9 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  igusLogo = 'assets/igus-logo.svg';
-
+  lang = 'ja-JP';
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('en-UK');
+    this.translate.setDefaultLang('header.component.i18n');
     // this.translate.use('en-UK');
   }
 }
