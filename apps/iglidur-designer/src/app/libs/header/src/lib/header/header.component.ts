@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import {FormsModule} from '@angular/forms';
 import { Lang } from '@iglidur-designer/interfaces';
+import { LangService } from '@iglidur-designer/services';
 
 @Component({
   selector: 'lib-header',
@@ -24,7 +25,7 @@ import { Lang } from '@iglidur-designer/interfaces';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  lang = 'fr-FR';
+  lang!: string;
   selectedLang!: string;
 
   langs: Lang[] = [
@@ -34,11 +35,13 @@ export class HeaderComponent {
     {value: 'ja-JP', viewValue: 'Japan'},
     {value: 'fr-FR', viewValue: 'French'},
   ];
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private langService: LangService) {
+    this.lang = this.langService.getLang();
     this.translate.use('header.component.i18n');
   }
 
   onLangChange() {
-    console.log(this.selectedLang);
+    this.lang = this.selectedLang;
+    this.langService.setLang(this.selectedLang);
   }
 }

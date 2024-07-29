@@ -20,6 +20,9 @@
       ],
       "@iglidur-designer/interfaces": [
         "apps/iglidur-designer/src/app/libs/interfaces/src/index.ts"
+      ],
+      "@iglidur-designer/services": [
+        "apps/iglidur-designer/src/app/libs/services/src/index.ts"
       ]
     }
   },

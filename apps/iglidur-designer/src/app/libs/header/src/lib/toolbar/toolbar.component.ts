@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LangService } from '@iglidur-designer/services';
 
 @Component({
   selector: 'lib-toolbar',
@@ -19,7 +20,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
-  lang = 'ja-JP';
+  lang!: string;
   links = [
     { name: 'MODEL', url: 'model' },
     { name: 'MATERIAL', url: 'material' },
@@ -28,10 +29,13 @@ export class ToolbarComponent {
   ];
   activeLink = this.links[0].name;
 
-  constructor(private translate: TranslateService) {
-    this.translate.use('toolbar.component.i18n');
-    this.translate.get('MENU.' + this.lang).subscribe((res) => {
-      this.links = this.links.map((link, index) => ({ ...link, name: res[index] }));
-    });
+  constructor(private translate: TranslateService, private langService: LangService) {
+    this.langService.lang$.subscribe((lang) => {
+      this.lang = lang;
+      this.translate.use('toolbar.component.i18n');
+      this.translate.get('MENU.' + this.lang).subscribe((res) => {
+        this.links = this.links.map((link, index) => ({ ...link, name: res[index] }));
+      });
+    })
   }
 }
