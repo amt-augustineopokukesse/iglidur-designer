@@ -17,6 +17,9 @@
     "paths": {
       "@iglidur-designer/header": [
         "apps/iglidur-designer/src/app/libs/header/src/index.ts"
+      ],
+      "@iglidur-designer/interfaces": [
+        "apps/iglidur-designer/src/app/libs/interfaces/src/index.ts"
       ]
     }
   },

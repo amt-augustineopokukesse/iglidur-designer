@@ -33,7 +33,7 @@
           }}</p>
       </div>
     </div>
-    <div class="menu">
+    <!-- <div class="menu">
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
@@ -44,18 +44,34 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voice mail</span>
+          <span>English (UK)</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
+          <span>English (US)</span>
+        </button>
+        <button mat-menu-item>
+          <span>German</span>
+        </button>
+        <button mat-menu-item>
+          <span>French</span>
+        </button>
+        <button mat-menu-item>
+          <span>Japan</span>
         </button>
       </mat-menu>
-    </div>
+    </div> -->
+
+    <form>
+        <mat-form-field>
+          <mat-label>Language</mat-label>
+          <mat-select [(ngModel)]="selectedLang" (selectionChange)="onLangChange()" name="lang">
+            @for (lang of langs; track lang) {
+              <mat-option [value]="lang.value">{{lang.viewValue}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <!-- <p> Selected food: {{selectedValue}} </p> -->
+      </form>
+      
   </div>
 </div>
