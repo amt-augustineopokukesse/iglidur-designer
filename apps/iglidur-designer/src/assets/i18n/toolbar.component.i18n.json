@@ -1,0 +1,9 @@
+{
+  "MENU": {
+    "de-DE": ["MODELL", "MATERIAL", "NACHBEARBEITUNG", "PRODUKTIBILITÄT"],
+    "en-UK": ["MODEL", "MATERIAL", "POST-PROCESSING", "PRODUCIBILITY"],
+    "en-US": ["MODEL", "MATERIAL", "POST-PROCESSING", "PRODUCIBILITY"],
+    "fr-FR": ["MODÈLE", "MATÉRIAU", "POST-TRAITEMENT", "PRODUCTIVITÉ"],
+    "ja-JP": ["モデル", "素材", "後処理", "生産性"]
+  }
+}

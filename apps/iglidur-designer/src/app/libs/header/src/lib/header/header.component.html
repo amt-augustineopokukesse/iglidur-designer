@@ -1,15 +1,35 @@
 <div class="header">
   <div class="title">
     <p class="logo">igus</p>
-    <div class="title-text"><label class="title-text-content upper">Iglidur<sup>®</sup> Designer</label><label class="title-text-content lower">motion plastics<sup>®</sup></label></div>
+    <div class="title-text">
+      <label class="title-text-content upper">{{
+        'TITLE.' + language | translate
+      }}</label
+      ><label class="title-text-content lower"
+        >motion plastics<sup>®</sup></label
+      >
+    </div>
   </div>
   <div class="menu-section">
     <div class="menu-options">
-        <div class="menu-option"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="mail"></mat-icon>
-            <p>Contact</p></div>
-        <div class="menu-option"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
-            <p>Shopping cart</p></div>
+      <div class="menu-option">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="mail"
+        ></mat-icon>
+        <p>{{ 'MENU-LABEL1.' + language | translate }}</p>
+      </div>
+      <div class="menu-option">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="shopping_cart"
+        ></mat-icon>
+        <p>{{ 'MENU-LABEL2.' + language | translate }}</p>
+      </div>
     </div>
+
     <div class="menu">
       <button
         mat-icon-button
@@ -20,19 +40,13 @@
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voice mail</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
+        <button mat-menu-item (click)="isLanguageActive = !isLanguageActive">
+          <span>English (UK)</span>
         </button>
       </mat-menu>
     </div>
   </div>
+  @if (isLanguageActive) {
+    <lib-languages></lib-languages>
+  }
 </div>

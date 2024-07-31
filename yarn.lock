@@ -3323,6 +3323,16 @@
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-18.1.1.tgz"
   integrity sha512-mjlfnWcHtBZJUJaVyffJZZL8U1o1XUQwrFIKeiFUeatLDsjtv8EbLW9Ed1v3eAJyVuaTNKpsdZma1XdxzeLONw==
 
+"@ngx-translate/core@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-15.0.0.tgz#0fe55b9bd47e75b03d1123658f15fb7b5a534f3c"
+  integrity sha512-Am5uiuR0bOOxyoercDnAA3rJVizo4RRqJHo8N3RqJ+XfzVP/I845yEnMADykOHvM6HkVm4SZSnJBOiz0Anx5BA==
+
+"@ngx-translate/http-loader@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-8.0.0.tgz#e02c25dbe33c6b1edee73e3654ab8a161572cdfb"
+  integrity sha512-SFMsdUcmHF5OdZkL1CHEoSAwbP5EbAOPTLLboOCRRoOg21P4GJx+51jxGdJeGve6LSKLf4Pay7BkTwmE6vxYlg==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -11229,18 +11239,9 @@ sass@1.77.6:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
-sass@^1.42.1:
+sass@^1.42.1, sass@^1.77.8:
   version "1.77.8"
   resolved "https://registry.npmjs.org/sass/-/sass-1.77.8.tgz"
-  integrity sha512-4UHg6prsrycW20fqLGPShtEvo/WyHRVRHwOP4DzkUrObWoWI05QBSfzU71TVB7PFaL104TwNaHpjlWXAZbQiNQ==
-  dependencies:
-    chokidar ">=3.0.0 <4.0.0"
-    immutable "^4.0.0"
-    source-map-js ">=0.6.2 <2.0.0"
-
-sass@^1.77.8:
-  version "1.77.8"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.77.8.tgz#9f18b449ea401759ef7ec1752a16373e296b52bd"
   integrity sha512-4UHg6prsrycW20fqLGPShtEvo/WyHRVRHwOP4DzkUrObWoWI05QBSfzU71TVB7PFaL104TwNaHpjlWXAZbQiNQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"

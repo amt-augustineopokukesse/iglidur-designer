@@ -1,5 +1,13 @@
 <div class="model">
     <div class="model-hero">
-        <h1 class="">Iglidur<sup>®</sup> Designer</h1>
+        <div class="text">
+            <h1 class="">{{ 'HERO.TITLE.' + language | translate }}</h1>
+            <p>{{ 'HERO.TEXT.' + language | translate }}</p>
+
+        </div>
+        <div class="image">
+            <img [src]="tools" alt="tools">
+        </div>
     </div>
+
 </div>

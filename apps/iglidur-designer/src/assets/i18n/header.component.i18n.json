@@ -1,0 +1,23 @@
+{
+  "TITLE": {
+    "de-DE": "3D drucken individuelle Bauteile",
+    "en-UK": "3D print custom components",
+    "en-US": "3D print custom components",
+    "fr-FR": "Impression 3D de composants personnalisés",
+    "ja-JP": "カスタム部品の3Dプリント"
+  },
+  "MENU-LABEL1": {
+    "de-DE": "Kontakt",
+    "en-UK": "Contact",
+    "en-US": "Contact",
+    "fr-FR": "Contact",
+    "ja-JP": "連絡先"
+  },
+  "MENU-LABEL2": {
+    "de-DE": "Warenkorb",
+    "en-UK": "Shopping cart",
+    "en-US": "Shopping cart",
+    "fr-FR": "Panier",
+    "ja-JP": "ショッピングカート"
+  }
+}
