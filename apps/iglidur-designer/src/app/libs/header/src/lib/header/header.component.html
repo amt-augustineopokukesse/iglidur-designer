@@ -3,7 +3,7 @@
     <p class="logo">igus</p>
     <div class="title-text">
       <label class="title-text-content upper">{{
-        'TITLE.' + lang | translate
+        'TITLE.' + language | translate
       }}</label
       ><label class="title-text-content lower"
         >motion plastics<sup>®</sup></label
@@ -18,7 +18,7 @@
           aria-label="Example home icon"
           fontIcon="mail"
         ></mat-icon>
-        <p>{{ 'MENU-LABEL1.' + lang | translate }}</p>
+        <p>{{ 'MENU-LABEL1.' + language | translate }}</p>
       </div>
       <div class="menu-option">
         <mat-icon
@@ -26,23 +26,27 @@
           aria-label="Example home icon"
           fontIcon="shopping_cart"
         ></mat-icon>
-        <p>{{ 'MENU-LABEL2.' + lang | translate }}</p>
+        <p>{{ 'MENU-LABEL2.' + language | translate }}</p>
       </div>
     </div>
 
-    <form>
-      <mat-form-field>
-        <mat-label>Language</mat-label>
-        <mat-select
-          [(ngModel)]="selectedLang"
-          (selectionChange)="onLangChange()"
-          name="lang"
-        >
-          @for (lang of langs; track lang) {
-          <mat-option [value]="lang.value">{{ lang.viewValue }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </form>
+    <div class="menu">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+        class="menu-button"
+      >
+        <mat-icon class="menu-icon">more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="isLanguageActive = !isLanguageActive">
+          <span>English (UK)</span>
+        </button>
+      </mat-menu>
+    </div>
   </div>
+  @if (isLanguageActive) {
+    <lib-languages></lib-languages>
+  }
 </div>

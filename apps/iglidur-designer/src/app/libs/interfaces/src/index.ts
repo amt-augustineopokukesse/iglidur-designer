@@ -1,1 +1,1 @@
-export * from './lib/interfaces/lang.interface';
+export * from './lib/interfaces/language.interface';

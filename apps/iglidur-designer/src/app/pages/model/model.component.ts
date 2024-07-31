@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LangService } from '@iglidur-designer/services';
-// import tools from '../../../assets/images/tools.png';
+import { LanguageService } from '@iglidur-designer/services';
 
 @Component({
   selector: 'app-model',
@@ -12,11 +11,11 @@ import { LangService } from '@iglidur-designer/services';
   styleUrl: './model.component.scss',
 })
 export class ModelComponent {
-  lang!: string;
+  language!: string;
   tools = '../../../assets/images/tools.png';
-  constructor(private translate: TranslateService, private langService: LangService) {
-    this.langService.lang$.subscribe((lang) => {
-      this.lang = lang;
+  constructor(private translate: TranslateService, private languageService: LanguageService) {
+    this.languageService.language$.subscribe((language) => {
+      this.language = language;
       this.translate.use('model.component.i18n');
     })
     

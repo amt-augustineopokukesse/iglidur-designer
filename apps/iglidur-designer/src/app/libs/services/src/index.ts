@@ -1,1 +1,1 @@
-export * from './lib/services/lang/lang.service';
+export * from './lib/services/language/language.service';
