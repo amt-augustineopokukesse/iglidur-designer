@@ -1,0 +1,23 @@
+.toolbar {
+    height: 3.5rem;
+    background-color: #f07d00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+  
+    .mat-tab-header {
+      height: 100%;
+      width: 50%;
+      color: white;
+  
+      .mat-tab-link {
+        color: white;
+  
+        &.mat-tab-label-active {
+          color: white;
+        }
+      }
+    }
+  }
+  

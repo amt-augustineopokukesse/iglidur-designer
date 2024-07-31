@@ -1,0 +1,10 @@
+.model {
+    box-sizing: border-box;
+    .model-hero {
+        display: flex;
+        padding: 1% 10%;
+        height: 30vh;
+        background-color: rgb(247, 247, 247);
+        width: 80%;
+    }
+}
