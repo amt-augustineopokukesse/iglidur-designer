@@ -6012,6 +6012,11 @@ cosmiconfig@^9.0.0:
     js-yaml "^4.1.0"
     parse-json "^5.2.0"
 
+country-flags-svg@^2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/country-flags-svg/-/country-flags-svg-2.0.0-beta.1.tgz#c836d2a0702a9959a1d429c9609bcd990e48e5a7"
+  integrity sha512-nOJOoClV+Jy6sftBAJ7R1j+0zMu45T/ljZWP4lCCwcImRn5/55LapjNU+NM/gFiEGdKTEOiiyDpGn5yGaBHgsg==
+
 create-jest@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/create-jest/-/create-jest-29.7.0.tgz"
