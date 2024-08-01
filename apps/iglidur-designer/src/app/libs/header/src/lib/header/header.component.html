@@ -40,13 +40,25 @@
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="isLanguageActive = !isLanguageActive">
-          <span>English (UK)</span>
+        <button
+          class="menu-item custom-menu-item"
+          mat-menu-item
+          (click)="isLanguageActive = !isLanguageActive"
+        >
+          <p>English (UK)</p>
+
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="keyboard_arrow_right"
+          ></mat-icon>
         </button>
       </mat-menu>
     </div>
   </div>
   @if (isLanguageActive) {
-    <lib-languages (emitClose)="isLanguageActive = !isLanguageActive"></lib-languages>
+  <lib-languages
+    (emitClose)="isLanguageActive = !isLanguageActive"
+  ></lib-languages>
   }
 </div>

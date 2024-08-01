@@ -38,10 +38,12 @@
     margin-top: 5%;
     display: flex;
     justify-content: space-between;
+    box-sizing: border-box;
     .country {
       display: flex;
-      // margin: 5% 0;
+      width: 20%;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       background-color: transparent;
       border: none;
@@ -53,9 +55,7 @@
       .flag {
         width: auto;
         height: 20px;
-        background-color: aqua;
         object-fit: cover;
-        
       }
     }
   }
