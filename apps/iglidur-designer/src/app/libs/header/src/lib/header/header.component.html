@@ -47,6 +47,6 @@
     </div>
   </div>
   @if (isLanguageActive) {
-    <lib-languages></lib-languages>
+    <lib-languages (emitClose)="isLanguageActive = !isLanguageActive"></lib-languages>
   }
 </div>

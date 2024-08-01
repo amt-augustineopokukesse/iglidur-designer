@@ -40,7 +40,16 @@
     justify-content: space-between;
     .country {
       display: flex;
-      margin: 5% 0;
+      // margin: 5% 0;
+      align-items: center;
+      gap: 10px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      box-sizing: border-box;
+      &:hover {
+        font-weight: bold;
+      }
       .flag {
         width: auto;
         height: 20px;

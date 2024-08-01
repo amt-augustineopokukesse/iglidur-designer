@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import { Language } from '@iglidur-designer/interfaces';
 import { LanguageService } from '@iglidur-designer/services';
 import { LanguagesComponent } from '../languages/languages.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lib-header',
@@ -26,10 +27,11 @@ import { LanguagesComponent } from '../languages/languages.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   language!: string;
   selectedLanguage!: string;
-  isLanguageActive = true;
+  isLanguageActive = false;
+  languageSubscription!: Subscription;
 
   languages: Language[] = [
     {value: 'en-UK', viewValue: 'English (UK)'},
@@ -38,13 +40,20 @@ export class HeaderComponent {
     {value: 'ja-JP', viewValue: 'Japan'},
     {value: 'fr-FR', viewValue: 'French'},
   ];
+
+
   constructor(private translate: TranslateService, private languageService: LanguageService) {
-    this.language = this.languageService.getLanguage();
-    this.translate.use('header.component.i18n');
+    
   }
 
-  onLanguageChange() {
-    this.language = this.selectedLanguage;
-    this.languageService.setLanguage(this.selectedLanguage);
+  ngOnInit(): void {
+    this.languageSubscription = this.languageService.language$.subscribe((language) => {
+      this.language = language;
+      this.translate.use('header.component.i18n');
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.languageSubscription.unsubscribe();
   }
 }
