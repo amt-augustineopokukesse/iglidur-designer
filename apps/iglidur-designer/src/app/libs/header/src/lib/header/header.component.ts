@@ -29,7 +29,7 @@ import { LanguagesComponent } from '../languages/languages.component';
 export class HeaderComponent {
   language!: string;
   selectedLanguage!: string;
-  isLanguageActive = false;
+  isLanguageActive = true;
 
   languages: Language[] = [
     {value: 'en-UK', viewValue: 'English (UK)'},
