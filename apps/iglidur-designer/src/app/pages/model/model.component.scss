@@ -1,3 +1,4 @@
+@import 'apps/iglidur-designer/src/app/libs/styles/_mixins.scss';
 .model {
   box-sizing: border-box;
   .model-hero {
@@ -8,8 +9,8 @@
     width: 80%;
     .text {
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      flex-direction: column;
       width: 50%;
       h1 {
         font-size: 2rem;
@@ -18,9 +19,7 @@
     }
     .image {
       width: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center;
       img {
         width: 60%;
       }
@@ -34,9 +33,7 @@
     margin: 0 auto;
     margin-top: 3rem;
     height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     color: #727272;
     &:hover {
       border-color: #f07d00;
