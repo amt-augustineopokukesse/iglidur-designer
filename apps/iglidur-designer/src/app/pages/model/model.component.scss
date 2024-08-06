@@ -1,29 +1,86 @@
 .model {
-    box-sizing: border-box;
-    .model-hero {
-        display: flex;
-        padding: 1% 10%;
-        height: 30vh;
-        background-color: rgb(247, 247, 247);
-        width: 80%;
-        .text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 50%;
-            h1 {
-                font-size: 2rem;
-                font-weight: 500;
-            }
-        }
-        .image {
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img {
-                width: 60%;
-            }
-        }
+  box-sizing: border-box;
+  .model-hero {
+    display: flex;
+    padding: 1% 10%;
+    height: 30vh;
+    background-color: rgb(247, 247, 247);
+    width: 80%;
+    .text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 50%;
+      h1 {
+        font-size: 2rem;
+        font-weight: 500;
+      }
     }
+    .image {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 60%;
+      }
+    }
+  }
+  .file-drop-zone {
+    border: 2px dashed #b3b3b3;
+    padding: 20px;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 3rem;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #727272;
+    &:hover {
+      border-color: #f07d00;
+    }
+    .select-button {
+      cursor: pointer;
+      text-decoration: none;
+      color: #f07d00;
+    }
+  }
+  
+  .file-drop-zone label {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .previews {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .preview-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 5px;
+    border: 1px solid #ddd;
+    padding: 2px;
+  }
 }
+
+// .previews {
+//     display: flex;
+//     flex-wrap: wrap;
+//     margin-top: 20px;
+//   }
+  
+//   .preview-image {
+//     width: 100px;
+//     height: 100px;
+//     object-fit: cover;
+//     margin: 5px;
+//     border: 1px solid #ddd;
+//     padding: 2px;
+//   }

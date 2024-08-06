@@ -1,13 +1,36 @@
 <div class="model">
-    <div class="model-hero">
-        <div class="text">
-            <h1 class="">{{ 'HERO.TITLE.' + language | translate }}</h1>
-            <p>{{ 'HERO.TEXT.' + language | translate }}</p>
-
-        </div>
-        <div class="image">
-            <img [src]="tools" alt="tools">
-        </div>
+  <div class="model-hero">
+    <div class="text">
+      <h1 class="">{{ 'HERO.TITLE.' + language | translate }}</h1>
+      <p>{{ 'HERO.TEXT.' + language | translate }}</p>
     </div>
+    <div class="image">
+      <img [src]="tools" alt="tools" />
+    </div>
+  </div>
+  <div 
+  class="file-drop-zone"
+  (drop)="onDrop($event)" 
+  (dragover)="onDragOver($event)">
+  <h2>Drag and drop files here or <label class="select-button" for="fileInput">select file</label></h2>
+</div>
 
+<input 
+  type="file" 
+  multiple 
+  (change)="onFileSelected($event)" 
+  id="fileInput" 
+  style="display: none;" 
+  #fileInput
+/>
+
+  <ul>
+    <li *ngFor="let file of files">{{ file.name }}</li>
+  </ul>
+
+  <div class="previews">
+    <div *ngFor="let preview of previews">
+      <img [src]="preview" alt="Image preview" class="preview-image" />
+    </div>
+  </div>
 </div>
