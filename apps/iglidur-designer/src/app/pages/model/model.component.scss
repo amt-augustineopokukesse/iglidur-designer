@@ -1,11 +1,12 @@
-@import 'apps/iglidur-designer/src/app/libs/styles/_mixins.scss';
+@import 'apps/iglidur-designer/src/app/libs/styles/mixins.scss';
+@import 'apps/iglidur-designer/src/app/libs/styles/variables.scss';
 .model {
   box-sizing: border-box;
   .model-hero {
     display: flex;
     padding: 1% 10%;
     height: 30vh;
-    background-color: rgb(247, 247, 247);
+    background-color: $background-color;
     width: 80%;
     .text {
       display: flex;
@@ -26,7 +27,7 @@
     }
   }
   .file-drop-zone {
-    border: 2px dashed #b3b3b3;
+    border: 2px dashed $accent-color;
     padding: 20px;
     text-align: center;
     width: 70%;
@@ -36,17 +37,16 @@
     @include flex-center;
     color: #727272;
     &:hover {
-      border-color: #f07d00;
+      border-color: $primary-color;
     }
     .select-button {
       cursor: pointer;
       text-decoration: none;
-      color: #f07d00;
+      color: $primary-color;
     }
   }
   
   .file-drop-zone label {
-    color: blue;
     text-decoration: underline;
     cursor: pointer;
   }
@@ -62,7 +62,7 @@
     height: 100px;
     object-fit: cover;
     margin: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid $accent-color;
     padding: 2px;
   }
 }

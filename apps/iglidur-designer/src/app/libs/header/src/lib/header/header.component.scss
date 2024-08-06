@@ -1,18 +1,19 @@
-@import 'apps/iglidur-designer/src/app/libs/styles/_mixins.scss';
+@import 'apps/iglidur-designer/src/app/libs/styles/mixins.scss';
+@import 'apps/iglidur-designer/src/app/libs/styles/variables.scss';
 .header {
   height: 3.5rem;
-  background-color: rgb(54, 54, 54);
+  background-color: $secondary-color;
   @include flex-center(space-between, center);
   padding: 0 2rem;
   .title {
     @include flex-center;
     gap: 1rem;
-    color: white;
+    color: $text-color-white;
     .logo {
       font-weight: 300;
       font-size: 3rem;
       text-decoration: line-through;
-      color: #f07d00;
+      color: $primary-color;
       margin: 0;
     }
     .title-text {
@@ -23,7 +24,7 @@
         margin: 0;
       }
       .lower {
-        color: rgb(179, 179, 179);
+        color: $accent-color;
       }
     }
   }
@@ -34,7 +35,7 @@
       display: flex;
       height: inherit;
       .menu-option {
-        color: white;
+        color: $text-color-white;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -42,7 +43,7 @@
         cursor: pointer;
         padding: 0 10px;
         &:hover {
-          background-color: rgb(194, 188, 188, 0.2);
+          background-color: $background-color-hover;
         }
       }
     }
@@ -54,10 +55,10 @@
         cursor: pointer;
         height: inherit;
         &:hover {
-          background-color: rgb(194, 188, 188, 0.2);
+          background-color: $background-color-hover;
         }
         .menu-icon {
-          color: white;
+          color: $text-color-white;
         }
       }
       
