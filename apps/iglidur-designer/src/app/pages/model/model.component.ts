@@ -63,6 +63,5 @@ export class ModelComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
       }
     }
-    console.log(this.files);
   }
 }
