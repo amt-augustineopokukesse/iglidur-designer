@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { findFlagUrlByCountryName } from 'country-flags-svg';
@@ -13,7 +13,7 @@ import { LanguageService } from '@iglidur-designer/services';
 })
 export class LanguagesComponent {
   constructor(private languageService: LanguageService) {}
-  @Output() emitClose = new EventEmitter<boolean>();
+  emitClose = output<boolean>();
   flagUrls = {
     uk: findFlagUrlByCountryName('United Kingdom'),
     us: findFlagUrlByCountryName('United States'),

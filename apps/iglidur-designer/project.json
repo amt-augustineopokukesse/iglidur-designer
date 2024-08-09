@@ -30,8 +30,8 @@
         "styles": [
           "apps/iglidur-designer/src/custom-theme.scss",
           "apps/iglidur-designer/src/styles.scss",
-          "apps/iglidur-designer/src/app/libs/styles/mixins.scss",
-          "apps/iglidur-designer/src/app/libs/styles/variables.scss"
+          "apps/iglidur-designer/src/app/libs/styles/_mixins.scss",
+          "apps/iglidur-designer/src/app/libs/styles/_variables.scss"
         ],
         "scripts": []
       },
