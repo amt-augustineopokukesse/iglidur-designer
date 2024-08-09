@@ -5,7 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'lib-toolbar',
@@ -21,8 +21,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-  private languageSubscription!: Subscription;
   language!: string;
+  private destroy$ = new Subject<void>();
   links = [
     { name: 'MODEL', url: 'model' },
     { name: 'MATERIAL', url: 'material' },
@@ -37,7 +37,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.languageSubscription = this.languageService.language$.subscribe(
+    this.languageService.language$.pipe(takeUntil(this.destroy$)).subscribe(
       (language) => {
         this.language = language;
         this.translate.use('toolbar.component.i18n');
@@ -52,6 +52,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.languageSubscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

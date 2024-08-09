@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-model',
@@ -13,25 +13,26 @@ import { Subscription } from 'rxjs';
   styleUrl: './model.component.scss',
 })
 export class ModelComponent implements OnInit, OnDestroy {
-  private languageSubscription!: Subscription;
   language!: string;
   tools = '../../../assets/images/tools.png';
   files: File[] = [];
   previews: string[] = [];
+  private destroy$ = new Subject<void>();
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService
   ) {}
 
   ngOnInit(): void {
-    this.languageSubscription = this.languageService.language$.subscribe((language) => {
+    this.languageService.language$.pipe(takeUntil(this.destroy$)).subscribe((language) => {
       this.language = language;
       this.translate.use('model.component.i18n');
     });
   }
 
   ngOnDestroy(): void {
-    this.languageSubscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onDrop(event: DragEvent) {
