@@ -8,29 +8,35 @@
       <img [src]="tools" alt="tools" />
     </div>
   </div>
-  <div 
-  class="file-drop-zone"
-  (drop)="onDrop($event)" 
-  (dragover)="onDragOver($event)">
-  <h2>Drag and drop files here or <label class="select-button" for="fileInput">select file</label></h2>
-</div>
+  <div
+    class="file-drop-zone"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+  >
+    <h2>
+      Drag and drop files here or
+      <label class="select-button" for="fileInput">select file</label>
+    </h2>
+  </div>
 
-<input 
-  type="file" 
-  multiple 
-  (change)="onFileSelected($event)" 
-  id="fileInput" 
-  style="display: none;" 
-  #fileInput
-/>
+  <input
+    type="file"
+    multiple
+    (change)="onFileSelected($event)"
+    id="fileInput"
+    style="display: none"
+    #fileInput
+  />
 
   <ul>
-    <li *ngFor="let file of files">{{ file.name }}</li>
+    @for(file of files; track file) {
+      <li>{{ file.name }}</li>
+    }
   </ul>
 
   <div class="previews">
-    <div *ngFor="let preview of previews">
-      <img [src]="preview" alt="Image preview" class="preview-image" />
-    </div>
+    @for(preview of previews; track preview) {
+    <img [src]="preview" alt="Image preview" class="preview-image" />
+    }
   </div>
 </div>
