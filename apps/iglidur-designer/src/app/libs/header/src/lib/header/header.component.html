@@ -15,7 +15,7 @@
       <div class="menu-option">
         <mat-icon
           aria-hidden="false"
-          aria-label="Example home icon"
+          aria-label="mail icon"
           fontIcon="mail"
         ></mat-icon>
         <p>{{ 'MENU-LABEL1.' + language | translate }}</p>
@@ -23,7 +23,7 @@
       <div class="menu-option">
         <mat-icon
           aria-hidden="false"
-          aria-label="Example home icon"
+          aria-label="shopping cart icon"
           fontIcon="shopping_cart"
         ></mat-icon>
         <p>{{ 'MENU-LABEL2.' + language | translate }}</p>
@@ -34,19 +34,31 @@
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with a menu"
+        aria-label="menu icon"
         class="menu-button"
       >
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="isLanguageActive = !isLanguageActive">
-          <span>English (UK)</span>
+        <button
+          class="menu-item custom-menu-item"
+          mat-menu-item
+          (click)="isLanguageActive = !isLanguageActive"
+        >
+          <p>English (UK)</p>
+
+          <mat-icon
+            aria-hidden="false"
+            aria-label="keyboard arrow right icon"
+            fontIcon="keyboard_arrow_right"
+          ></mat-icon>
         </button>
       </mat-menu>
     </div>
   </div>
   @if (isLanguageActive) {
-    <lib-languages></lib-languages>
+  <lib-languages
+    (emitClose)="isLanguageActive = !isLanguageActive"
+  ></lib-languages>
   }
 </div>

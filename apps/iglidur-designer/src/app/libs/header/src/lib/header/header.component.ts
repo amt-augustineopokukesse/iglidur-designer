@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Language } from '@iglidur-designer/interfaces';
 import { LanguageService } from '@iglidur-designer/services';
 import { LanguagesComponent } from '../languages/languages.component';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'lib-header',
@@ -21,30 +22,42 @@ import { LanguagesComponent } from '../languages/languages.component';
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    LanguagesComponent
+    LanguagesComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   language!: string;
   selectedLanguage!: string;
-  isLanguageActive = true;
+  isLanguageActive = false;
+  languageSubscription!: Subscription;
+  private destroy$ = new Subject<void>();
 
   languages: Language[] = [
-    {value: 'en-UK', viewValue: 'English (UK)'},
-    {value: 'en-US', viewValue: 'English (US)'},
-    {value: 'de-DE', viewValue: 'German'},
-    {value: 'ja-JP', viewValue: 'Japan'},
-    {value: 'fr-FR', viewValue: 'French'},
+    { value: 'en-UK', viewValue: 'English (UK)' },
+    { value: 'en-US', viewValue: 'English (US)' },
+    { value: 'de-DE', viewValue: 'German' },
+    { value: 'ja-JP', viewValue: 'Japan' },
+    { value: 'fr-FR', viewValue: 'French' },
   ];
-  constructor(private translate: TranslateService, private languageService: LanguageService) {
-    this.language = this.languageService.getLanguage();
-    this.translate.use('header.component.i18n');
+
+  constructor(
+    private translate: TranslateService,
+    private languageService: LanguageService
+  ) {}
+
+  ngOnInit(): void {
+    this.languageService.language$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((language) => {
+        this.language = language;
+        this.translate.use('header.component.i18n');
+      });
   }
 
-  onLanguageChange() {
-    this.language = this.selectedLanguage;
-    this.languageService.setLanguage(this.selectedLanguage);
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

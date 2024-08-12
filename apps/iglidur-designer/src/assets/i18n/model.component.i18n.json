@@ -13,6 +13,28 @@
       "en-US": "The individual component is created in just a few steps: upload the CAD model, select a manufacturing procedure and material - that's it. You can immediately see the price and delivery time, calculate the service life of the component in your application and order directly online.",
       "fr-FR": "Le composant individuel est créé en quelques étapes seulement : téléchargez le modèle CAO, sélectionnez une procédure de fabrication et un matériau - c'est tout. Vous pouvez voir immédiatement le prix et le délai de livraison, calculer la durée de vie du composant dans votre application et commander directement en ligne.",
       "ja-JP": "CADモデルをアップロードし、製造手順と材料を選択するだけです。すぐに価格と納期を確認し、お客様のアプリケーションでのコンポーネントの耐用年数を計算し、オンラインで直接注文することができます。"
+    },
+    "DRAGDROP": {
+      "de-DE": {
+        "TEXT": "Ziehen und Ablegen zum Hochladen einer Datei",
+        "SELECT": "datei auswählen"
+      },
+      "en-UK": {
+        "TEXT": "Drag and drop to upload file",
+        "SELECT": "select file"
+      },
+      "en-US": {
+        "TEXT": "Drag and drop to upload file",
+        "SELECT": "select file"
+      },
+      "fr-FR": {
+        "TEXT": "Glisser-déposer pour télécharger un fichier",
+        "SELECT": "sélectionner un fichier"
+      },
+      "ja-JP": {
+        "TEXT": "ドラッグ＆ドロップでファイルをアップロード",
+        "SELECT": "ファイルを選択"
+      }
     }
   }
 }

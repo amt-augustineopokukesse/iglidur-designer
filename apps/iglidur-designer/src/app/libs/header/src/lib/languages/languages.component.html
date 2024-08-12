@@ -1,7 +1,7 @@
 <div class="languages-container">
   <div class="header">
     <h1>Select your country</h1>
-    <button class="close">
+    <button class="close" (click)="onClose()">
       <mat-icon
         aria-hidden="false"
         aria-label="close icon"
@@ -11,10 +11,10 @@
     </button>
   </div>
   <div class="languages">
-    <div class="country"><img class="flag" src="{{flagUrls.uk}}" alt="UK Flag"> United Kingdom (English)</div>
-    <div class="country"><img class="flag" src="{{flagUrls.us}}" alt="US Flag"> United States (English)</div>
-    <div class="country"><img class="flag" src="{{flagUrls.fr}}" alt="France Flag"> France (French)</div>
-    <div class="country"><img class="flag" src="{{flagUrls.de}}" alt="Germany Flag"> Germany (Deutsch)</div>
-    <div class="country"><img class="flag" src="{{flagUrls.jp}}" alt="Japan Flag"> 日本 (日本国)</div>
+    <button class="country" (click)="onSelectLanguage('en-UK')"><img class="flag" src="{{flagUrls.uk}}" alt="UK Flag"> United Kingdom (English)</button>
+    <button class="country" (click)="onSelectLanguage('en-US')"><img class="flag" src="{{flagUrls.us}}" alt="US Flag"> United States (English)</button>
+    <button class="country" (click)="onSelectLanguage('fr-FR')"><img class="flag" src="{{flagUrls.fr}}" alt="France Flag"> France (French)</button>
+    <button class="country" (click)="onSelectLanguage('de-DE')"><img class="flag" src="{{flagUrls.de}}" alt="Germany Flag"> Germany (Deutsch)</button>
+    <button class="country" (click)="onSelectLanguage('ja-JP')"><img class="flag" src="{{flagUrls.jp}}" alt="Japan Flag"> 日本 (日本国)</button>
   </div>
 </div>
