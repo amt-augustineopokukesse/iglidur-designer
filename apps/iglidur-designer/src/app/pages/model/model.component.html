@@ -24,6 +24,7 @@
     multiple
     (change)="onFileSelected($event)"
     id="fileInput"
+    accept=".stl"
     style="display: none"
     #fileInput
   />
@@ -39,4 +40,9 @@
     <img [src]="preview" alt="Image preview" class="preview-image" />
     }
   </div>
+
+  <div class="model-viewer">
+    <stl-model-viewer *ngIf="modelUrl" [stlModels]="[modelUrl]"></stl-model-viewer>
+  </div>
+
 </div>

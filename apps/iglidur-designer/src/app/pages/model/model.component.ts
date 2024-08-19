@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
 import { Subject, takeUntil } from 'rxjs';
+// import * as THREE from 'three';
+// import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import { StlModelViewerModule } from 'angular-stl-model-viewer';
 
 @Component({
   selector: 'app-model',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DragDropModule],
+  imports: [CommonModule, TranslateModule, DragDropModule, StlModelViewerModule],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
 })
@@ -18,6 +21,7 @@ export class ModelComponent implements OnInit, OnDestroy {
   files: File[] = [];
   previews: string[] = [];
   private destroy$ = new Subject<void>();
+  modelUrl!: string | undefined | null;
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService
@@ -46,9 +50,24 @@ export class ModelComponent implements OnInit, OnDestroy {
     event.preventDefault();
   }
 
-  onFileSelected(event: any) {
-    const selectedFiles = event.target.files;
-    this.handleFiles(selectedFiles);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // onFileSelected(event: any) {
+  //   const selectedFiles = event.target.files;
+  //   this.handleFiles(selectedFiles);
+  // }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.modelUrl = e.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   handleFiles(files: FileList) {
@@ -58,6 +77,7 @@ export class ModelComponent implements OnInit, OnDestroy {
 
       if (file.type.startsWith('image/')) {
         const reader = new FileReader();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
