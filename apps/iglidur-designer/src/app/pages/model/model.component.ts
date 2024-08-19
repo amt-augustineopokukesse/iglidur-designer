@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
 import { Subject, takeUntil } from 'rxjs';
-// import * as THREE from 'three';
-// import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 
 @Component({
@@ -49,12 +47,6 @@ export class ModelComponent implements OnInit, OnDestroy {
   onDragOver(event: DragEvent) {
     event.preventDefault();
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // onFileSelected(event: any) {
-  //   const selectedFiles = event.target.files;
-  //   this.handleFiles(selectedFiles);
-  // }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
