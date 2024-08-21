@@ -5,6 +5,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
 import { Subject, takeUntil } from 'rxjs';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
+import { Store } from '@ngrx/store';
+import { uploadModel } from '../../+state/store.actions';
 
 @Component({
   selector: 'app-model',
@@ -22,7 +24,8 @@ export class ModelComponent implements OnInit, OnDestroy {
   modelUrl!: string | undefined | null;
   constructor(
     private translate: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +60,7 @@ export class ModelComponent implements OnInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.modelUrl = e.target?.result as string;
+        this.store.dispatch(uploadModel({model: this.modelUrl}));
       };
       reader.readAsDataURL(file);
     }
