@@ -3,16 +3,22 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 import { Store } from '@ngrx/store';
 import { uploadModel } from '../../+state/store.actions';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-model',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DragDropModule, StlModelViewerModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    DragDropModule,
+    StlModelViewerModule,
+  ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
 })
@@ -23,17 +29,21 @@ export class ModelComponent implements OnInit, OnDestroy {
   previews: string[] = [];
   private destroy$ = new Subject<void>();
   modelUrl!: string | undefined | null;
+  screenshotUrl: string | null = null;
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.languageService.language$.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-      this.language = language;
-      this.translate.use('model.component.i18n');
-    });
+    this.languageService.language$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((language) => {
+        this.language = language;
+        this.translate.use('model.component.i18n');
+      });
   }
 
   ngOnDestroy(): void {
@@ -61,14 +71,12 @@ export class ModelComponent implements OnInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.modelUrl = e.target?.result as string;
-        this.store.dispatch(uploadModel({model: this.modelUrl}));
+        this.store.dispatch(uploadModel({ model: this.modelUrl }));
       };
+      this.ensureModelRendered().subscribe(() => {
+        this.screenshot();
+      });
       reader.readAsDataURL(file);
-      setTimeout(() => {
-        this.ensureModelRendered().then(() => {
-          this.screenshot();
-        });
-      }, 500);
     }
   }
 
@@ -88,12 +96,13 @@ export class ModelComponent implements OnInit, OnDestroy {
     }
   }
 
-  ensureModelRendered(): Promise<void> {
-    return new Promise((resolve) => {
+  ensureModelRendered(): Observable<void> {
+    return new Observable<void>((observer) => {
       const checkIfRendered = () => {
         const viewer = document.querySelector('stl-model-viewer');
         if (viewer && viewer.querySelector('canvas')) {
-          resolve();
+          observer.next();
+          observer.complete(); // Completes the observable sequence
         } else {
           requestAnimationFrame(checkIfRendered);
         }
@@ -102,13 +111,17 @@ export class ModelComponent implements OnInit, OnDestroy {
     });
   }
 
-  screenshot() {
-    console.log('screenshot');
-    html2canvas(document.querySelector('#model')!).then((canvas) => {
-      const a = document.createElement('a');
-      a.href = canvas.toDataURL();
-      a.download = 'model.png';
-      a.click();
-    });
+  screenshot(): void {
+    const modelElement = document.querySelector('#model') as HTMLElement;
+    if (modelElement) {
+      html2canvas(modelElement).then((canvas) => {
+        this.screenshotUrl = canvas.toDataURL();
+      });
+    }
+  }
+
+  onScreenshotClick(): void {
+    console.log('screenshot clicked');
+    this.router.navigate(['/material']);
   }
 }
