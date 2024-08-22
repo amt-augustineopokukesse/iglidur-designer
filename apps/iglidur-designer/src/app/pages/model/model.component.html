@@ -43,7 +43,10 @@
 
   <div class="model-viewer">
     <h2>Select Model</h2>
-    <stl-model-viewer *ngIf="modelUrl" [stlModels]="[modelUrl]"></stl-model-viewer>
+    <div id="model">
+      <stl-model-viewer *ngIf="modelUrl" [stlModels]="[modelUrl]" ></stl-model-viewer>
+
+    </div>
   </div>
 
 </div>

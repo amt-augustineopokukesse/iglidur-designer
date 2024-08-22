@@ -7,6 +7,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 import { Store } from '@ngrx/store';
 import { uploadModel } from '../../+state/store.actions';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-model',
@@ -63,6 +64,11 @@ export class ModelComponent implements OnInit, OnDestroy {
         this.store.dispatch(uploadModel({model: this.modelUrl}));
       };
       reader.readAsDataURL(file);
+      setTimeout(() => {
+        this.ensureModelRendered().then(() => {
+          this.screenshot();
+        });
+      }, 500);
     }
   }
 
@@ -80,5 +86,29 @@ export class ModelComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
       }
     }
+  }
+
+  ensureModelRendered(): Promise<void> {
+    return new Promise((resolve) => {
+      const checkIfRendered = () => {
+        const viewer = document.querySelector('stl-model-viewer');
+        if (viewer && viewer.querySelector('canvas')) {
+          resolve();
+        } else {
+          requestAnimationFrame(checkIfRendered);
+        }
+      };
+      checkIfRendered();
+    });
+  }
+
+  screenshot() {
+    console.log('screenshot');
+    html2canvas(document.querySelector('#model')!).then((canvas) => {
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL();
+      a.download = 'model.png';
+      a.click();
+    });
   }
 }
