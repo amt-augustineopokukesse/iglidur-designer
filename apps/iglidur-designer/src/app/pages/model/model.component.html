@@ -8,11 +8,7 @@
       <img [src]="tools" alt="tools" />
     </div>
   </div>
-  <div
-    class="file-drop-zone"
-    (drop)="onDrop($event)"
-    (dragover)="onDragOver($event)"
-  >
+  <div class="file-drop-zone">
     <h2>
       Drag and drop files here or
       <label class="select-button" for="fileInput">select file</label>
@@ -24,19 +20,29 @@
     multiple
     (change)="onFileSelected($event)"
     id="fileInput"
+    accept=".stl"
     style="display: none"
     #fileInput
   />
 
-  <ul>
-    @for(file of files; track file) {
-      <li>{{ file.name }}</li>
+  <div class="model-viewer">
+    @if (screenshotUrl) {
+      <h2>Select Model</h2>      
     }
-  </ul>
+    @if(screenshots$ | async; as screenshots) { @for(screenshot of screenshots;
+    track screenshot) {
+    <img
+      [src]="screenshot"
+      (click)="onScreenshotClick()"
+      class="screenshot"
+      alt="Model Screenshot"
+    />
+    } }
 
-  <div class="previews">
-    @for(preview of previews; track preview) {
-    <img [src]="preview" alt="Image preview" class="preview-image" />
-    }
+    <div id="model" [class.hidden]="screenshotUrl">
+      @if (modelUrl && !screenshotUrl) {
+      <stl-model-viewer [stlModels]="[modelUrl]"></stl-model-viewer>
+      }
+    </div>
   </div>
 </div>

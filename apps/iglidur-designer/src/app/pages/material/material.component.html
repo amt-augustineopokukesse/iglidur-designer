@@ -1,1 +1,11 @@
-<p>material works!</p>
+<div class="material">
+  <div class="preview">
+    <div class="stl-model">
+      @if(modelUrl$ | async; as modelUrl) {
+      <stl-model-viewer [stlModels]="[modelUrl]"></stl-model-viewer>
+      }
+    </div>
+    <div class="request"></div>
+  </div>
+  <div class="requirements"></div>
+</div>

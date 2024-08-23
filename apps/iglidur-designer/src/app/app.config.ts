@@ -6,6 +6,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from './constants/translate-loader';
 import { provideHttpClient } from '@angular/common/http';
+import { provideStore, provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import * as fromStore from './+state/store.reducer';
+import { StoreEffects } from './+state/store.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -16,17 +20,21 @@ export function provideTranslateModule() {
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    }
+      deps: [HttpClient],
+    },
   }).providers;
 }
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideEffects(StoreEffects),
+    provideState({name: fromStore.STORE_FEATURE_KEY, reducer: fromStore.storeReducer}),
+    provideEffects(),
+    provideStore(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideAnimationsAsync(),
     provideTranslateModule() ?? [],
-    provideHttpClient()
-  ]
+    provideHttpClient(),
+  ],
 };

@@ -3,12 +3,23 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { StlModelViewerModule } from 'angular-stl-model-viewer';
+import { select, Store } from '@ngrx/store';
+import { saveScreenShot, uploadModel } from '../../+state/store.actions';
+import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
+import { selectScreenshots } from '../../+state/store.selectors';
 
 @Component({
   selector: 'app-model',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DragDropModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    DragDropModule,
+    StlModelViewerModule,
+  ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
 })
@@ -18,16 +29,26 @@ export class ModelComponent implements OnInit, OnDestroy {
   files: File[] = [];
   previews: string[] = [];
   private destroy$ = new Subject<void>();
+  modelUrl!: string | undefined | null;
+  screenshotUrl: string | null = null;
+  screenshots$!: Observable<string[]>;
   constructor(
     private translate: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private store: Store,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.languageService.language$.pipe(takeUntil(this.destroy$)).subscribe((language) => {
-      this.language = language;
-      this.translate.use('model.component.i18n');
-    });
+    this.languageService.language$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((language) => {
+        this.language = language;
+        this.translate.use('model.component.i18n');
+      });
+
+    this.screenshots$ = this.store.pipe(select(selectScreenshots));
+
   }
 
   ngOnDestroy(): void {
@@ -35,34 +56,52 @@ export class ModelComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer?.files) {
-      this.handleFiles(event.dataTransfer.files);
+  onFileSelected(event: Event): void {
+    const {files} = event.target as HTMLInputElement;
+
+    if (files && files.length > 0) {
+      const file = files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.modelUrl = e.target?.result as string;
+        this.store.dispatch(uploadModel({ model: this.modelUrl }));
+      };
+      this.ensureModelRendered().subscribe(() => {
+        this.screenshot();
+      });
+      reader.readAsDataURL(file);
     }
   }
 
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
+
+  ensureModelRendered(): Observable<void> {
+    return new Observable<void>((observer) => {
+      const checkIfRendered = () => {
+        const viewer = document.querySelector('stl-model-viewer');
+        if (viewer && viewer.querySelector('canvas')) {
+          observer.next();
+          observer.complete();
+        } else {
+          requestAnimationFrame(checkIfRendered);
+        }
+      };
+      checkIfRendered();
+    });
   }
 
-  onFileSelected(event: any) {
-    const selectedFiles = event.target.files;
-    this.handleFiles(selectedFiles);
-  }
-
-  handleFiles(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      this.files.push(file);
-
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.previews.push(e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
+  screenshot(): void {
+    const modelElement = document.querySelector('#model') as HTMLElement;
+    if (modelElement) {
+      html2canvas(modelElement).then((canvas) => {
+        this.screenshotUrl = canvas.toDataURL();
+        this.store.dispatch(saveScreenShot({ screenshot: this.screenshotUrl }));
+        this.screenshots$ = this.store.pipe(select(selectScreenshots));
+      });
     }
+  }
+
+  onScreenshotClick(): void {
+    this.router.navigate(['/material']);
   }
 }
