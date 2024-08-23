@@ -1,3 +1,35 @@
+@import 'apps/iglidur-designer/src/app/libs/styles/mixins.scss';
+@import 'apps/iglidur-designer/src/app/libs/styles/variables.scss';
+.material {
+  display: flex;
+  width: 100%;
+  height: 82%;
+  .preview {
+    width: 34%;
+    height: 100%;
+    background-color: #ececec;
+    .stl-model {
+      height: 25%;
+      width: 100%;
+      @include flex-center;
+      stl-model-viewer {
+        width: 25%;
+        height: 100px;
+        background-color: transparent;
+        canvas {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+  .requirements {
+    width: 66%;
+    overflow-y: auto;
+  }
+}
+
 stl-model-viewer {
   width: 400px;
   height: 400px;
