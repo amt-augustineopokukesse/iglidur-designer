@@ -1,39 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { STORE_FEATURE_KEY, StoreState, storeAdapter } from './store.reducer';
+import { STORE_FEATURE_KEY } from './store.reducer';
+import { AppState } from './store.models';
 
-// Lookup the 'Store' feature state managed by NgRx
 export const selectStoreState =
-  createFeatureSelector<StoreState>(STORE_FEATURE_KEY);
+  createFeatureSelector<AppState>(STORE_FEATURE_KEY);
 
-const { selectAll, selectEntities } = storeAdapter.getSelectors();
-
-export const selectStoreLoaded = createSelector(
+export const selectModelUrl = createSelector(
   selectStoreState,
-  (state: StoreState) => state.loaded
+  (state) => state.models[state.models.length - 1]
 );
 
-export const selectStoreError = createSelector(
+export const selectScreenshots = createSelector(
   selectStoreState,
-  (state: StoreState) => state.error
-);
-
-export const selectAllStore = createSelector(
-  selectStoreState,
-  (state: StoreState) => selectAll(state)
-);
-
-export const selectStoreEntities = createSelector(
-  selectStoreState,
-  (state: StoreState) => selectEntities(state)
-);
-
-export const selectSelectedId = createSelector(
-  selectStoreState,
-  (state: StoreState) => state.selectedId
-);
-
-export const selectEntity = createSelector(
-  selectStoreEntities,
-  selectSelectedId,
-  (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
+  (state) => state.screenshots
 );

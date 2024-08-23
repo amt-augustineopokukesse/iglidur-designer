@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
-import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectModelUrl } from '../../+state/store.selectors';
 
 @Component({
   selector: 'app-material',
@@ -11,14 +13,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './material.component.scss',
 })
 export class MaterialComponent implements OnInit {
-  modelUrl: string | null = null;
+  modelUrl$!: Observable<string>;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    // this.route.queryParams.subscribe(params => {
-    //   this.modelUrl = params['modelUrl'];
-    // });
-    console.log('material this');
+    this.modelUrl$ = this.store.pipe(select(selectModelUrl));
   }
 }

@@ -8,6 +8,7 @@ export const STORE_FEATURE_KEY = 'store';
 
 export const initialStoreState: AppState = {
   models: [],
+  screenshots: [],
 };
 
 const reducer = createReducer(
@@ -16,6 +17,11 @@ const reducer = createReducer(
   on(StoreActions.uploadModel, (state, { model }) => ({
     ...state,
     models: [...state.models, model],
+  })),
+
+  on(StoreActions.saveScreenShot, (state, { screenshot }) => ({
+    ...state,
+    screenshots: [...state.screenshots, screenshot],
   }))
 );
 

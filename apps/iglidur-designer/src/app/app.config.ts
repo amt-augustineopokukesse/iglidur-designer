@@ -28,7 +28,7 @@ export function provideTranslateModule() {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideEffects(StoreEffects),
-    provideState(fromStore.STORE_FEATURE_KEY, fromStore.storeReducer),
+    provideState({name: fromStore.STORE_FEATURE_KEY, reducer: fromStore.storeReducer}),
     provideEffects(),
     provideStore(),
     provideZoneChangeDetection({ eventCoalescing: true }),
