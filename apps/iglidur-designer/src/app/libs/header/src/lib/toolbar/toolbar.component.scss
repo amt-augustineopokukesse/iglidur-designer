@@ -1,23 +1,54 @@
 @import 'apps/iglidur-designer/src/app/libs/styles/mixins.scss';
 @import 'apps/iglidur-designer/src/app/libs/styles/variables.scss';
 .toolbar {
-    height: 3.5rem;
-    background-color: $primary-color;
-    @include flex-center;
-    padding: 0 2rem;
-  
-    .mat-tab-header {
-      height: 100%;
-      width: 50%;
-      color: $text-color-white;
-  
-      .mat-tab-link {
-        color: $text-color-white;
-  
-        &.mat-tab-label-active {
-          color: $text-color-white;
-        }
-      }
-    }
+  height: 3.5rem;
+  background-color: $primary-color;
+  @include flex-center;
+  padding: 0 2rem;
+
+  .mat-tab-header {
+    height: 100%;
+    width: 50%;
+    // color: rgb(231, 131, 131) !important;
+    // background-color: blue;
   }
-  
+  .mat-tab-link {
+    color: white;
+    // background-color: aqua;
+  }
+}
+
+.mat-mdc-tab-link {
+  --mdc-tab-indicator-active-indicator-color: white;
+  --mdc-tab-indicator-active-indicator-height: 3px;
+  --mat-tab-header-active-label-text-color: white;
+  --mat-tab-header-inactive-label-text-color: white;
+
+  &:hover {
+    // Styles for hover state
+    --mat-tab-header-inactive-hover-label-text-color: white;
+    --mat-tab-header-inactive-hover-state-layer-color: rgba(white, 0.08);
+  }
+
+  // You can also target the active tab hover state if needed
+  &.mdc-tab--active:hover {
+    --mat-tab-header-active-hover-label-text-color: white;
+    --mat-tab-header-active-hover-state-layer-color: rgba(white, 0.12);
+  }
+
+  // Focus state
+  &:focus {
+    --mat-tab-header-inactive-focus-label-text-color: white;
+    --mat-tab-header-inactive-focus-state-layer-color: rgba(
+      white,
+      0.12
+    );
+  }
+
+  // Active tab focus state
+  &.mdc-tab--active:focus {
+    --mat-tab-header-active-focus-label-text-color: white;
+    --mat-tab-header-active-focus-state-layer-color: rgba(white, 0.16);
+  }
+
+}
