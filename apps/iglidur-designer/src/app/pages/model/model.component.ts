@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,9 @@ import { saveScreenShot, uploadModel } from '../../+state/store.actions';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { selectScreenshots } from '../../+state/store.selectors';
+import * as THREE from 'three';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 @Component({
   selector: 'app-model',
@@ -22,16 +25,23 @@ import { selectScreenshots } from '../../+state/store.selectors';
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
-})
-export class ModelComponent implements OnInit, OnDestroy {
+})export class ModelComponent implements AfterViewInit, OnInit, OnDestroy {
+  @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
+
+  private renderer!: THREE.WebGLRenderer;
+  private scene!: THREE.Scene;
+  private camera!: THREE.PerspectiveCamera;
+  private controls!: OrbitControls;
+
   language!: string;
   tools = '../../../assets/images/tools.png';
   files: File[] = [];
   previews: string[] = [];
   private destroy$ = new Subject<void>();
-  modelUrl!: string | undefined | null;
+  modelUrl!: string;
   screenshotUrl: string | null = null;
   screenshots$!: Observable<string[]>;
+  private modelLoaded = false;
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
@@ -51,9 +61,40 @@ export class ModelComponent implements OnInit, OnDestroy {
 
   }
 
+  ngAfterViewInit() {
+    this.initThree();
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private initThree() {
+    const container = this.rendererContainer.nativeElement;
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+    this.renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(this.renderer.domElement);
+
+    this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0xf0f0f0);
+
+    this.camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    this.camera.position.z = 5;
+
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 0, 1);
+    this.scene.add(light);
+
+    this.animate();
+  }
+
+  private animate() {
+    requestAnimationFrame(() => this.animate());
+    this.controls.update();
+    this.renderer.render(this.scene, this.camera);
   }
 
   onFileSelected(event: Event): void {
@@ -66,19 +107,58 @@ export class ModelComponent implements OnInit, OnDestroy {
       reader.onload = (e) => {
         this.modelUrl = e.target?.result as string;
         this.store.dispatch(uploadModel({ model: this.modelUrl }));
+        this.loadModel();
       };
-      this.ensureModelRendered().subscribe(() => {
-        this.screenshot();
-      });
+      // this.ensureModelRendered().subscribe(() => {
+        // this.screenshot();
+      // });
       reader.readAsDataURL(file);
     }
+  }
+
+  private loadModel() {
+    this.modelLoaded = false;
+    const loader = new STLLoader();
+    loader.load(this.modelUrl, (geometry) => {
+      this.scene.children = this.scene.children.filter(child => !(child instanceof THREE.Mesh));
+      
+      const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+      const mesh = new THREE.Mesh(geometry, material);
+      
+      geometry.computeBoundingBox();
+      if(geometry.boundingBox) {
+        const center = geometry.boundingBox.getCenter(new THREE.Vector3());
+        mesh.position.sub(center);  
+        console.log('bg run');      
+      }
+      
+      this.scene.add(mesh);
+      this.modelLoaded = true;
+      console.log('model loaded', this.modelLoaded);
+
+      const box = new THREE.Box3().setFromObject(mesh);
+      const size = box.getSize(new THREE.Vector3());
+      const center2 = box.getCenter(new THREE.Vector3());
+
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const fov = this.camera.fov * (Math.PI / 180);
+      const cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+      this.camera.position.z = cameraZ * 1.5; 
+      this.camera.lookAt(center2);
+
+      this.controls.target.copy(center2);
+      this.controls.update();
+
+      this.screenshot();
+    });
   }
 
 
   ensureModelRendered(): Observable<void> {
     return new Observable<void>((observer) => {
       const checkIfRendered = () => {
-        const viewer = document.querySelector('stl-model-viewer');
+        const viewer = document.getElementById('rendererContainer');
         if (viewer && viewer.querySelector('canvas')) {
           observer.next();
           observer.complete();
@@ -91,15 +171,47 @@ export class ModelComponent implements OnInit, OnDestroy {
   }
 
   screenshot(): void {
-    const modelElement = document.querySelector('#model') as HTMLElement;
-    if (modelElement) {
-      html2canvas(modelElement).then((canvas) => {
-        this.screenshotUrl = canvas.toDataURL();
-        this.store.dispatch(saveScreenShot({ screenshot: this.screenshotUrl }));
-        this.screenshots$ = this.store.pipe(select(selectScreenshots));
+    const modelElement = this.rendererContainer.nativeElement as HTMLDivElement;
+  
+    if (modelElement && this.modelLoaded) {  
+      requestAnimationFrame(() => {
+        html2canvas(modelElement).then((canvas) => {
+          this.screenshotUrl = canvas.toDataURL();  
+          
+          this.store.dispatch(saveScreenShot({ screenshot: this.screenshotUrl }));
+          
+          this.screenshots$ = this.store.pipe(select(selectScreenshots));
+        }).catch((error) => {
+          console.error('Failed to capture screenshot:', error);
+        });
       });
+    } else {
+      console.error('Model element is not available or model is not loaded.');
     }
   }
+  
+
+  // screenshot() {
+  //   console.log('screenshot', this.modelLoaded);
+  //   if (!this.modelLoaded) {
+  //     console.error('Model not loaded yet');
+  //     return;
+  //   }
+
+  //   // Ensure the scene is rendered
+  //   this.renderer.render(this.scene, this.camera);
+
+  //   // Capture the canvas content
+  //   this.renderer.domElement.toBlob((blob) => {
+  //     if (blob) {
+  //       const url = URL.createObjectURL(blob);
+  //       this.screenshotUrl = url;
+  //       this.store.dispatch(saveScreenShot({ screenshot: this.screenshotUrl }));
+  //     } else {
+  //       console.error('Failed to create blob from canvas');
+  //     }
+  //   }, 'image/png');
+  // }
 
   onScreenshotClick(): void {
     this.router.navigate(['/material']);

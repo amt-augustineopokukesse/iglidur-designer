@@ -39,7 +39,8 @@
     />
     } }
 
-    <div id="model" [class.hidden]="screenshotUrl">
+    <!-- <div id="model" [class.hidden]="screenshotUrl"> -->
+    <div #rendererContainer [class.hidden]="screenshotUrl">
       @if (modelUrl && !screenshotUrl) {
       <stl-model-viewer [stlModels]="[modelUrl]"></stl-model-viewer>
       }
