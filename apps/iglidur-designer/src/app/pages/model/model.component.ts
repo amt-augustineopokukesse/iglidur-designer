@@ -120,9 +120,7 @@ import { FormsModule } from '@angular/forms';
         this.store.dispatch(uploadModel({ model: this.modelUrl }));
         this.loadModel();
       };
-      // this.ensureModelRendered().subscribe(() => {
-        // this.screenshot();
-      // });
+      
       reader.readAsDataURL(file);
     }
   }
@@ -198,29 +196,6 @@ import { FormsModule } from '@angular/forms';
       console.error('Model element is not available or model is not loaded.');
     }
   }
-  
-
-  // screenshot() {
-  //   console.log('screenshot', this.modelLoaded);
-  //   if (!this.modelLoaded) {
-  //     console.error('Model not loaded yet');
-  //     return;
-  //   }
-
-  //   // Ensure the scene is rendered
-  //   this.renderer.render(this.scene, this.camera);
-
-  //   // Capture the canvas content
-  //   this.renderer.domElement.toBlob((blob) => {
-  //     if (blob) {
-  //       const url = URL.createObjectURL(blob);
-  //       this.screenshotUrl = url;
-  //       this.store.dispatch(saveScreenShot({ screenshot: this.screenshotUrl }));
-  //     } else {
-  //       console.error('Failed to create blob from canvas');
-  //     }
-  //   }, 'image/png');
-  // }
 
   onScreenshotClick(): void {
     this.router.navigate(['/material']);
