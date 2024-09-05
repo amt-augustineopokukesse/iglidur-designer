@@ -140,12 +140,10 @@ import { FormsModule } from '@angular/forms';
       if(geometry.boundingBox) {
         const center = geometry.boundingBox.getCenter(new THREE.Vector3());
         mesh.position.sub(center);  
-        console.log('bg run');      
       }
       
       this.scene.add(mesh);
       this.modelLoaded = true;
-      console.log('model loaded', this.modelLoaded);
 
       const box = new THREE.Box3().setFromObject(mesh);
       const size = box.getSize(new THREE.Vector3());
