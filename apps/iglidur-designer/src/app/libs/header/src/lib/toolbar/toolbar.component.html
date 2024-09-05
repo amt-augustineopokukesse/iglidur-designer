@@ -1,5 +1,5 @@
 <div class="toolbar">
-  <nav mat-tab-nav-bar color="primary" class="mat-tab-header">
+  <nav mat-tab-nav-bar color="primary" class="mat-tab-header" [tabPanel]="tabPanel">
     @for (link of links; track link) {
     <a
       mat-tab-link
@@ -13,3 +13,8 @@
     }
   </nav>
 </div>
+
+
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>

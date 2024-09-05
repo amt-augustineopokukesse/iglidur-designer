@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,10 @@ import { selectScreenshots } from '../../+state/store.selectors';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-model',
@@ -22,9 +26,14 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
     TranslateModule,
     DragDropModule,
     StlModelViewerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    FormsModule
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })export class ModelComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
 
@@ -41,6 +50,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
   modelUrl!: string;
   screenshotUrl: string | null = null;
   screenshots$!: Observable<string[]>;
+  rating = 0;
+  stars = [1, 2, 3, 4, 5];
   private modelLoaded = false;
   constructor(
     private translate: TranslateService,
@@ -215,5 +226,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
   onScreenshotClick(): void {
     this.router.navigate(['/material']);
+  }
+
+  rate(rating: number) {
+    this.rating = rating;
   }
 }
