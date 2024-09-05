@@ -127,6 +127,8 @@
     min-width: 150px;
     max-width: 500px;
     width: 100%;
+    @include flex-center;
+    flex-direction: column;
     .rating-form-field {
       width: 100%;
       position: relative;
