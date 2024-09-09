@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -9,7 +9,6 @@ import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'lib-toolbar',
-  encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     CommonModule,

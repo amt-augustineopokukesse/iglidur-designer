@@ -27,10 +27,9 @@
 
   <div class="model-viewer">
     @if (screenshotUrl) {
-      <h2>Select Model</h2>      
-    }
-    @if(screenshots$ | async; as screenshots) { @for(screenshot of screenshots;
-    track screenshot) {
+    <h2>Select Model</h2>
+    } @if(screenshots$ | async; as screenshots) { @for(screenshot of
+    screenshots; track screenshot) {
     <img
       [src]="screenshot"
       (click)="onScreenshotClick()"
@@ -39,7 +38,6 @@
     />
     } }
 
-    <!-- <div id="model" [class.hidden]="screenshotUrl"> -->
     <div #rendererContainer [class.hidden]="screenshotUrl">
       @if (modelUrl && !screenshotUrl) {
       <stl-model-viewer [stlModels]="[modelUrl]"></stl-model-viewer>
@@ -49,17 +47,20 @@
   <div class="footer">
     <p class="footer-text">Please rate this configurator</p>
     <div class="rating">
-      <mat-icon
-        *ngFor="let star of stars; let i = index"
-        (click)="rate(i + 1)"
-        [ngClass]="{ 'filled': i < rating }"
-      >
-        {{ i < rating ? 'star' : 'star_border' }}
-      </mat-icon>
+      @for (star of stars; track star; let i = $index) {
+        <mat-icon (click)="rate(i + 1)" [class.filled]="i < rating">
+          {{ i < rating ? 'star' : 'star_border' }}
+        </mat-icon>
+      }
     </div>
     <form class="rating-form">
       <mat-form-field class="rating-form-field">
-        <textarea matInput draggable="false" placeholder="What can we improve?" value=""></textarea>
+        <textarea
+          matInput
+          draggable="false"
+          placeholder="What can we improve?"
+          value=""
+        ></textarea>
       </mat-form-field>
       <button mat-button color="accent">Submit Rating</button>
     </form>
