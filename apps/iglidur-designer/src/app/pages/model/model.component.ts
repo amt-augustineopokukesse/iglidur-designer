@@ -13,11 +13,7 @@ import { selectScreenshots } from '../../+state/store.selectors';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from '@iglidur-designer/header';
 
 @Component({
   selector: 'app-model',
@@ -27,15 +23,10 @@ import { MatButtonModule } from '@angular/material/button';
     TranslateModule,
     DragDropModule,
     StlModelViewerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule 
+    FooterComponent
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
-  encapsulation: ViewEncapsulation.None,
 })export class ModelComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
 
@@ -52,8 +43,7 @@ import { MatButtonModule } from '@angular/material/button';
   modelUrl!: string;
   screenshotUrl: string | null = null;
   screenshots$!: Observable<string[]>;
-  rating = 0;
-  stars = [1, 2, 3, 4, 5];
+  
   private modelLoaded = false;
   constructor(
     private translate: TranslateService,
@@ -203,7 +193,5 @@ import { MatButtonModule } from '@angular/material/button';
     this.router.navigate(['/material']);
   }
 
-  rate(rating: number) {
-    this.rating = rating;
-  }
+  
 }

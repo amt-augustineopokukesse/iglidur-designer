@@ -49,25 +49,5 @@
       }
     </div>
   </div>
-  <div class="footer">
-    <p class="footer-text">Please rate this configurator</p>
-    <div class="rating">
-      @for (star of stars; track star; let i = $index) {
-        <mat-icon (click)="rate(i + 1)" [class.filled]="i < rating">
-          {{ i < rating ? 'star' : 'star_border' }}
-        </mat-icon>
-      }
-    </div>
-    <form class="rating-form">
-      <mat-form-field class="rating-form-field">
-        <textarea
-          matInput
-          draggable="false"
-          placeholder="What can we improve?"
-          value=""
-        ></textarea>
-      </mat-form-field>
-      <button mat-button color="accent">Submit Rating</button>
-    </form>
-  </div>
+  <lib-footer></lib-footer>
 </div>
