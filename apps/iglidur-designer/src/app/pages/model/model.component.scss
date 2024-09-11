@@ -35,6 +35,7 @@
     margin-top: 3rem;
     height: 200px;
     @include flex-center;
+    flex-direction: column;
     color: #727272;
     &:hover {
       border-color: $primary-color;
@@ -43,6 +44,18 @@
       cursor: pointer;
       text-decoration: none;
       color: $primary-color;
+    }
+  }
+
+  .no-model {
+    width: 70%;
+    margin: 0 auto;
+    @include flex-center;
+    flex-direction: column;
+    .load {
+      color: $primary-color;
+      font-weight: 500;
+      cursor: pointer;
     }
   }
 

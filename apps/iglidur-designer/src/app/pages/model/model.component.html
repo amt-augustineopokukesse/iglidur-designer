@@ -10,9 +10,10 @@
   </div>
   <div class="file-drop-zone">
     <h2>
-      Drag and drop files here or
+      Drag and drop to upload CAD model or
       <label class="select-button" for="fileInput">select file</label>
     </h2>
+    <p>File format: .stp or .step (max. 75MB)</p>
   </div>
 
   <input
@@ -24,6 +25,10 @@
     style="display: none"
     #fileInput
   />
+  <div class="no-model">
+    <p>You don't have any CAD model at the moment?</p>
+    <p class="load">Load sample models <span>or</span> Create CAD model for selected geometries</p>
+  </div>
 
   <div class="model-viewer">
     @if (screenshotUrl) {
