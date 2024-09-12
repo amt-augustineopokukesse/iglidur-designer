@@ -1,7 +1,7 @@
 <div class="footer">
     <p class="footer-text">Please rate this configurator</p>
     <div class="rating">
-      @for (star of stars; track star; let i = $index) {
+      @for (star of stars; track $index; let i = $index) {
         <mat-icon (click)="rate(i + 1)" [class.filled]="i < rating">
           {{ i < rating ? 'star' : 'star_border' }}
         </mat-icon>
