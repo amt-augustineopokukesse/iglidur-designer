@@ -23,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class FooterComponent {
   rating = 0;
-  stars = [1, 2, 3, 4, 5];
+  stars = new Array(5);
 
   rate(rating: number) {
     this.rating = rating;
