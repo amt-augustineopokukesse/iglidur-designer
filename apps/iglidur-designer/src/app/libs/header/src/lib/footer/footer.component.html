@@ -1,5 +1,5 @@
 <div class="footer">
-    <p class="footer-text">Please rate this configurator</p>
+    <p class="footer-text">{{ 'FOOTER.TITLE.' + language | translate }}</p>
     <div class="rating">
       @for (star of stars; track $index; let i = $index) {
         <mat-icon (click)="rate(i + 1)" [class.filled]="i < rating">
@@ -12,11 +12,11 @@
         <textarea
           matInput
           draggable="false"
-          placeholder="What can we improve?"
+          placeholder="{{ 'FOOTER.TITLE.' + language | translate }}"
           value=""
         ></textarea>
       </mat-form-field>
-      <button mat-button color="accent">Submit Rating</button>
+      <button mat-button color="accent">{{ 'FOOTER.SUBMIT.' + language | translate }}</button>
     </form>
     <p class="copyright-text">© 2024 igus® GmbH</p>
   </div>
