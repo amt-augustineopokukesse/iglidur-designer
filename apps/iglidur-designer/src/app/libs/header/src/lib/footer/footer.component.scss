@@ -15,24 +15,29 @@
     font-size: 20px;
     font-weight: 500;
   }
+
   .rating {
     display: flex;
+    
     mat-icon {
       width: 40px;
       height: 40px;
       cursor: pointer;
       font-size: 40px;
     }
+
     .filled {
       color: gold;
     }
   }
+
   .rating-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
     @include flex-center;
     flex-direction: column;
+
     .rating-form-field {
       width: 100%;
       position: relative;
@@ -42,6 +47,7 @@
       --mdc-filled-text-field-focus-active-indicator-height: 0;
       --mdc-filled-text-field-focus-state-layer-color: transparent;
       --mdc-filled-text-field-hover-state-layer-color: transparent;
+
       textarea {
         width: 268px;
         height: 80px;
@@ -54,12 +60,15 @@
         position: relative;
         left: 20%;
         resize: none;
+
         &::placeholder {
           color: #888888 !important;
         }
+
         &:hover {
           border: 1px solid #888888;
         }
+
         &:focus {
           border: 2px solid $primary-color;
           outline: none;
@@ -67,6 +76,7 @@
       }
     }
   }
+
   .copyright-text {
     color: #888888;
     font-size: 14px;
