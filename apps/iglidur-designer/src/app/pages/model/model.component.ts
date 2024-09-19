@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -27,6 +27,7 @@ import { FooterComponent } from '@iglidur-designer/header';
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })export class ModelComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
 
