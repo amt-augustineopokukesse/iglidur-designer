@@ -1,0 +1,25 @@
+{
+    "FOOTER": {
+        "TITLE": {
+            "de-DE": "Bitte bewerten Sie diesen Konfigurator",
+            "en-UK": "Please rate this configurator",
+            "en-US": "Please rate this configurator",
+            "fr-FR": "Veuillez évaluer ce configurateur",
+            "ja-JP": "このコンフィギュレーターを評価してください"
+        },
+        "PLACEHOLDER": {
+            "de-DE": "Was können wir verbessern?",
+            "en-UK": "What can we improve?",
+            "en-US": "What can we improve?",
+            "fr-FR": "Que pouvons-nous améliorer?",
+            "ja-JP": "何を改善できるか？"
+        },
+        "SUBMIT": {
+            "de-DE": "Bewertung abgeben",
+            "en-UK": "Submit Rating",
+            "en-US": "Submit Rating",
+            "fr-FR": "Soumettre une évaluation",
+            "ja-JP": "評価を投稿する"
+        }
+    }
+}

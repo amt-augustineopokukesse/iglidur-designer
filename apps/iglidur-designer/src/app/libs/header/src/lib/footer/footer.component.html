@@ -1,0 +1,22 @@
+<div class="footer">
+    <p class="footer-text">{{ 'FOOTER.TITLE.' + language | translate }}</p>
+    <div class="rating">
+      @for (star of stars; track $index; let i = $index) {
+        <mat-icon (click)="rate(i + 1)" [class.filled]="i < rating">
+          {{ i < rating ? 'star' : 'star_border' }}
+        </mat-icon>
+      }
+    </div>
+    <form class="rating-form">
+      <mat-form-field class="rating-form-field">
+        <textarea
+          matInput
+          draggable="false"
+          placeholder="{{ 'FOOTER.TITLE.' + language | translate }}"
+          value=""
+        ></textarea>
+      </mat-form-field>
+      <button mat-button color="accent">{{ 'FOOTER.SUBMIT.' + language | translate }}</button>
+    </form>
+    <p class="copyright-text">© 2024 igus® GmbH</p>
+  </div>
