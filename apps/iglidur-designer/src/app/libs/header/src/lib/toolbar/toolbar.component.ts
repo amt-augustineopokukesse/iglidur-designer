@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -34,7 +34,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private translate: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +48,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             ...link,
             name: res[index],
           }));
+          this.changeDetectorRef.markForCheck();
         });
       }
     );

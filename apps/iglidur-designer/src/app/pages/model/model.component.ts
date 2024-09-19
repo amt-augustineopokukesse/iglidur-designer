@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -51,6 +51,7 @@ import { FooterComponent } from '@iglidur-designer/header';
     private languageService: LanguageService,
     private store: Store,
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +60,7 @@ import { FooterComponent } from '@iglidur-designer/header';
       .subscribe((language) => {
         this.language = language;
         this.translate.use('model.component.i18n');
+        this.changeDetectorRef.markForCheck();
       });
 
     this.screenshots$ = this.store.pipe(select(selectScreenshots));
