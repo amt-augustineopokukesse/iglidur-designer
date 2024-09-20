@@ -46,7 +46,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
-    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +54,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((language) => {
         this.language = language;
         this.translate.use('header.component.i18n');
-        this.changeDetectorRef.markForCheck();
       });
   }
 

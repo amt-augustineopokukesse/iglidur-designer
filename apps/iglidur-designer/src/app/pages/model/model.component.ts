@@ -51,7 +51,6 @@ import { FooterComponent } from '@iglidur-designer/header';
     private languageService: LanguageService,
     private store: Store,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +59,6 @@ import { FooterComponent } from '@iglidur-designer/header';
       .subscribe((language) => {
         this.language = language;
         this.translate.use('model.component.i18n');
-        this.changeDetectorRef.markForCheck();
       });
 
     this.screenshots$ = this.store.pipe(select(selectScreenshots));

@@ -34,7 +34,6 @@ export class FooterComponent implements OnInit, OnDestroy {
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
-    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +42,6 @@ export class FooterComponent implements OnInit, OnDestroy {
       .subscribe((language) => {
         this.language = language;
         this.translate.use('footer.component.i18n');
-        this.changeDetectorRef.markForCheck();
       });
 
 

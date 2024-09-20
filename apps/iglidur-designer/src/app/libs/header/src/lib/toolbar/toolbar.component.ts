@@ -35,7 +35,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
-    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +47,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             ...link,
             name: res[index],
           }));
-          this.changeDetectorRef.markForCheck();
         });
       }
     );
