@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent, ToolbarComponent } from '@iglidur-designer/header';
 
@@ -8,6 +8,7 @@ import { HeaderComponent, ToolbarComponent } from '@iglidur-designer/header';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'iglidur-designer';

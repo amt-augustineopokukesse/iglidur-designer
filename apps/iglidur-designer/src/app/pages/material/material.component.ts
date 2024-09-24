@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 import { select, Store } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { selectModelUrl } from '../../+state/store.selectors';
   imports: [CommonModule, StlModelViewerModule],
   templateUrl: './material.component.html',
   styleUrl: './material.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialComponent implements OnInit {
   modelUrl$!: Observable<string>;
