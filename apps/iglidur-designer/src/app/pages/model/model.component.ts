@@ -62,7 +62,7 @@ import { FooterComponent } from '@iglidur-designer/header';
       });
 
     this.screenshots$ = this.store.pipe(select(selectScreenshots));
-
+      
   }
 
   ngAfterViewInit() {
