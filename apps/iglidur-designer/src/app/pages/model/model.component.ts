@@ -13,7 +13,6 @@ import { selectScreenshots } from '../../+state/store.selectors';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { FooterComponent } from '@iglidur-designer/header';
 
 @Component({
   selector: 'app-model',
@@ -23,7 +22,6 @@ import { FooterComponent } from '@iglidur-designer/header';
     TranslateModule,
     DragDropModule,
     StlModelViewerModule,
-    FooterComponent,
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
