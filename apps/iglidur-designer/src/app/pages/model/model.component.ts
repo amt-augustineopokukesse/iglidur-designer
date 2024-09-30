@@ -23,7 +23,7 @@ import { FooterComponent } from '@iglidur-designer/header';
     TranslateModule,
     DragDropModule,
     StlModelViewerModule,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
@@ -57,8 +57,8 @@ import { FooterComponent } from '@iglidur-designer/header';
     this.languageService.language$
       .pipe(takeUntil(this.destroy$))
       .subscribe((language) => {
-        this.language = language;
         this.translate.use('model.component.i18n');
+        this.language = language;
       });
 
     this.screenshots$ = this.store.pipe(select(selectScreenshots));
@@ -67,6 +67,7 @@ import { FooterComponent } from '@iglidur-designer/header';
 
   ngAfterViewInit() {
     this.initThree();
+    this.translate.use('model.component.i18n');
   }
 
   ngOnDestroy(): void {
