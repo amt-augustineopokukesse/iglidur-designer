@@ -52,8 +52,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.languageService.language$
       .pipe(takeUntil(this.destroy$))
       .subscribe((language) => {
-        this.language = language;
         this.translate.use('header.component.i18n');
+        this.language = language;
       });
   }
 
