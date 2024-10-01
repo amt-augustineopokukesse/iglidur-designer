@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,7 @@ import { selectScreenshots } from '../../+state/store.selectors';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { FooterComponent } from '@iglidur-designer/header';
 
 @Component({
   selector: 'app-model',
@@ -22,6 +23,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
     TranslateModule,
     DragDropModule,
     StlModelViewerModule,
+    FooterComponent
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
@@ -49,13 +51,17 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
     private languageService: LanguageService,
     private store: Store,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.languageService.language$
       .pipe(takeUntil(this.destroy$))
       .subscribe((language) => {
-        this.translate.use('model.component.i18n');
+        this.translate.getTranslation('model.component.i18n').subscribe(translations => {
+          this.translate.setTranslation('model.component.i18n', translations, true);
+          this.cdr.detectChanges();
+        });
         this.language = language;
       });
 
@@ -64,8 +70,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
   }
 
   ngAfterViewInit() {
-    this.initThree();
-    this.translate.use('model.component.i18n');
+    this.initThree();    
   }
 
   ngOnDestroy(): void {
