@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="file-drop-zone">
-    <h2>
+    <h2 class="drag-drop">
       {{ 'DRAGDROP.' + language + '.TEXT' | translate }}
       <label class="select-button" for="fileInput">{{
         'DRAGDROP.' + language + '.SELECT' | translate
@@ -28,11 +28,19 @@
     #fileInput
   />
   <div class="no-model">
-    <p>{{ 'MODELSAMPLE.TEXT1.' + language | translate }}</p>
+    <p class="no-model-text">
+      {{ 'MODELSAMPLE.TEXT1.' + language | translate }}
+    </p>
     <p class="load">
-      {{ 'MODELSAMPLE.TEXT2.LEFT.' + language | translate }}
-      <span>{{ 'MODELSAMPLE.TEXT2.MIDDLE.' + language | translate }}</span>
-      {{ 'MODELSAMPLE.TEXT2.RIGHT.' + language | translate }}
+      <span class="load-text-left">
+        {{ 'MODELSAMPLE.TEXT2.LEFT.' + language | translate }}
+      </span>
+      <span class="load-text-middle">{{
+        'MODELSAMPLE.TEXT2.MIDDLE.' + language | translate
+      }}</span>
+      <span class="load-text-right">
+        {{ 'MODELSAMPLE.TEXT2.RIGHT.' + language | translate }}
+      </span>
     </p>
   </div>
 

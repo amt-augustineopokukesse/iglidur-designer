@@ -2,25 +2,30 @@
 @import 'apps/iglidur-designer/src/app/libs/styles/variables.scss';
 .model {
   box-sizing: border-box;
+
   .model-hero {
     display: flex;
     padding: 1% 10%;
     height: 30vh;
     background-color: $background-color;
     width: 80%;
+
     .text {
       display: flex;
       justify-content: center;
       flex-direction: column;
       width: 50%;
+
       h1 {
         font-size: 2rem;
         font-weight: 500;
       }
     }
+
     .image {
       width: 50%;
       @include flex-center;
+
       img {
         width: 60%;
       }
@@ -37,13 +42,20 @@
     @include flex-center;
     flex-direction: column;
     color: #727272;
+
     &:hover {
       border-color: $primary-color;
     }
-    .select-button {
-      cursor: pointer;
-      text-decoration: none;
-      color: $primary-color;
+
+    .drag-drop {
+      padding: 0;
+      margin: 0;
+
+      .select-button {
+        cursor: pointer;
+        text-decoration: none;
+        color: $primary-color;
+      }
     }
   }
 
@@ -52,10 +64,38 @@
     margin: 0 auto;
     @include flex-center;
     flex-direction: column;
+
+    .no-model-text {
+      padding: 0%;
+      margin-bottom: 0%;
+    }
+
     .load {
       color: $primary-color;
       font-weight: 500;
       cursor: pointer;
+      margin-top: 0%;
+
+      .load-text-left, .load-text-right {
+        font-weight: 500;
+
+        &:hover {
+          color: #db7202;
+        }
+      }
+
+      .load-text-middle {
+        cursor: default;
+        text-decoration: none;
+        color: $secondary-color;
+        font-weight: 400;
+      }
+
+      .load-text-right {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
