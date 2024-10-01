@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -23,7 +23,7 @@ import { FooterComponent } from '@iglidur-designer/header';
     TranslateModule,
     DragDropModule,
     StlModelViewerModule,
-    FooterComponent,
+    FooterComponent
   ],
   templateUrl: './model.component.html',
   styleUrl: './model.component.scss',
@@ -51,13 +51,17 @@ import { FooterComponent } from '@iglidur-designer/header';
     private languageService: LanguageService,
     private store: Store,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.languageService.language$
       .pipe(takeUntil(this.destroy$))
       .subscribe((language) => {
-        this.translate.use('model.component.i18n');
+        this.translate.getTranslation('model.component.i18n').subscribe(translations => {
+          this.translate.setTranslation('model.component.i18n', translations, true);
+          this.cdr.detectChanges();
+        });
         this.language = language;
       });
 
@@ -66,8 +70,7 @@ import { FooterComponent } from '@iglidur-designer/header';
   }
 
   ngAfterViewInit() {
-    this.initThree();
-    this.translate.use('model.component.i18n');
+    this.initThree();    
   }
 
   ngOnDestroy(): void {

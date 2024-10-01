@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,17 +34,17 @@ export class FooterComponent implements OnInit, OnDestroy {
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.languageService.language$
       .pipe(takeUntil(this.destroy$))
       .subscribe((language) => {
-        this.translate.use('footer.component.i18n');
+        this.translate.use('footer.component.i18n');      
         this.language = language;
+        this.cdr.detectChanges();
       });
-
-
   }
 
   ngOnDestroy(): void {
