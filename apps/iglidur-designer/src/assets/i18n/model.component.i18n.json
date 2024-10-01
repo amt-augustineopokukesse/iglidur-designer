@@ -43,5 +43,38 @@
     "en-US": "File format: .stp or .step (max. 75MB)",
     "fr-FR": "Format de fichier : .stp ou .step (max. 75MB)",
     "ja-JP": "ファイル形式：.stpまたは.step (最大75MB)"
+  },
+  "MODELSAMPLE": {
+    "TEXT1": {
+      "de-DE": "Sie haben zur Zeit kein CAD-Modell?",
+      "en-UK": "You don't have any CAD model at the moment?",
+      "en-US": "You don't have any CAD model at the moment?",
+      "fr-FR": "Vous n'avez pas de modèle CAO pour le moment?",
+      "ja-JP": "今のところCADモデルはないんですか？"
+    },
+    "TEXT2": {
+      "LEFT": {
+        "de-DE": "Mustermodelle laden",
+        "en-UK": "Load sample models",
+        "en-US": "Load sample models",
+        "fr-FR": "Charger les modèles d'échantillons",
+        "ja-JP": "サンプルモデルを読み込む"
+      },
+      "RIGHT": {
+        "de-DE": "CAD-Modell für ausgewählte Geometrien erstellen",
+        "en-UK": "Create CAD model for selected geometries",
+        "en-US": "Create CAD model for selected geometries",
+        "fr-FR": "Créer un modèle CAO pour les géométries sélectionnées",
+        "ja-JP": "選択した形状のCADモデルを作成"
+      },
+      "MIDDLE": {
+        "de-DE": "oder",
+        "en-UK": "or",
+        "en-US": "or",
+        "fr-FR": "ou",
+        "ja-JP": "または"
+      }
+    }
   }
+
 }

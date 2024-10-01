@@ -11,7 +11,9 @@
   <div class="file-drop-zone">
     <h2>
       {{ 'DRAGDROP.' + language + '.TEXT' | translate }}
-      <label class="select-button" for="fileInput">{{ 'DRAGDROP.' + language + '.SELECT' | translate }}</label>
+      <label class="select-button" for="fileInput">{{
+        'DRAGDROP.' + language + '.SELECT' | translate
+      }}</label>
     </h2>
     <p>{{ 'FILEFORMAT.' + language | translate }}</p>
   </div>
@@ -26,8 +28,12 @@
     #fileInput
   />
   <div class="no-model">
-    <p>You don't have any CAD model at the moment?</p>
-    <p class="load">Load sample models <span>or</span> Create CAD model for selected geometries</p>
+    <p>{{ 'MODELSAMPLE.TEXT1.' + language | translate }}</p>
+    <p class="load">
+      {{ 'MODELSAMPLE.TEXT2.LEFT.' + language | translate }}
+      <span>{{ 'MODELSAMPLE.TEXT2.MIDDLE.' + language | translate }}</span>
+      {{ 'MODELSAMPLE.TEXT2.RIGHT.' + language | translate }}
+    </p>
   </div>
 
   <div class="model-viewer">
