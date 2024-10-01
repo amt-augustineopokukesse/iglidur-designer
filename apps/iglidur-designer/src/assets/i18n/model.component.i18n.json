@@ -17,23 +17,23 @@
   },
   "DRAGDROP": {
     "de-DE": {
-      "TEXT": "Ziehen und Ablegen zum Hochladen einer Datei",
+      "TEXT": "Ziehen und Ablegen zum Hochladen eines CAD-Modells oder",
       "SELECT": "datei auswählen"
     },
     "en-UK": {
-      "TEXT": "Drag and drop to upload file",
+      "TEXT": "Drag & drop to upload CAD model or",
       "SELECT": "select file"
     },
     "en-US": {
-      "TEXT": "Drag and drop to upload file",
+      "TEXT": "Drag & drop to upload CAD model or",
       "SELECT": "select file"
     },
     "fr-FR": {
-      "TEXT": "Glisser-déposer pour télécharger un fichier",
+      "TEXT": "Glisser-déposer pour télécharger un modèle CAO ou",
       "SELECT": "sélectionner un fichier"
     },
     "ja-JP": {
-      "TEXT": "ドラッグ＆ドロップでファイルをアップロード",
+      "TEXT": "ドラッグ&ドロップでCADモデルをアップロードするか",
       "SELECT": "ファイルを選択"
     }
   },
