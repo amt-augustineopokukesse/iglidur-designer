@@ -10,6 +10,8 @@ import { Language } from '@iglidur-designer/interfaces';
 import { LanguageService } from '@iglidur-designer/services';
 import { LanguagesComponent } from '../languages/languages.component';
 import { Subject, Subscription, takeUntil } from 'rxjs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 
 @Component({
   selector: 'lib-header',
@@ -23,6 +25,9 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
     MatSelectModule,
     FormsModule,
     LanguagesComponent,
+    MatDividerModule,
+    MatRadioButton,
+    MatRadioGroup
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -33,6 +38,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   selectedLanguage!: string;
   isLanguageActive = false;
   languageSubscription!: Subscription;
+  viewMode: 'perspective' | 'orthographic' = 'perspective';
+
+  toggleView(mode: 'perspective' | 'orthographic') {
+    this.viewMode = mode;
+  }
   private destroy$ = new Subject<void>();
 
   languages: Language[] = [

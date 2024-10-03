@@ -29,29 +29,40 @@
         <p>{{ 'MENU-LABEL2.' + language | translate }}</p>
       </div>
     </div>
-
     <div class="menu">
-      <button
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        aria-label="menu icon"
-        class="menu-button"
-      >
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu" class="menu-button">
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <button
-          class="menu-item custom-menu-item"
-          mat-menu-item
-          (click)="isLanguageActive = !isLanguageActive"
-        >
-          <p>English (UK)</p>
-
-          <mat-icon
-            aria-hidden="false"
-            aria-label="keyboard arrow right icon"
-            fontIcon="keyboard_arrow_right"
-          ></mat-icon>
+      <mat-menu #menu="matMenu" class="mat-menu" style="width: 400px; overflow: hidden;">
+        <button mat-menu-item style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <span style="flex-grow: 1;">English (EN)</span>
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+        <p style="padding-left: 15px;">Camera:</p>
+        <button mat-menu-item (click)="toggleView('perspective')" class="view-mode">
+          <mat-icon>{{ viewMode === 'perspective' ? 'done' : '' }}</mat-icon>
+          <span>Perspective view</span>
+        </button>
+        <button mat-menu-item (click)="toggleView('orthographic')" class="view-mode">
+          <mat-icon>{{ viewMode === 'orthographic' ? 'done' : '' }}</mat-icon>
+          <span>Orthographic view</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+          <mat-icon>info_outline</mat-icon>
+          <span>About</span>
+        </button>
+        <button mat-menu-item style="padding-left: 57px;">
+          <span>Imprint</span>
+        </button>
+        <button mat-menu-item style="padding-left: 57px;">
+          <span>Data protection regulations</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+          <mat-icon>apps</mat-icon>
+          <span>All configurators</span>
         </button>
       </mat-menu>
     </div>
