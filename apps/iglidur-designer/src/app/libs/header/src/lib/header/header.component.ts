@@ -13,6 +13,9 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 
+type ViewMode = 'perspective' | 'orthographic';
+
+
 @Component({
   selector: 'lib-header',
   standalone: true,
@@ -33,14 +36,15 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
   language!: string;
   selectedLanguage!: string;
   isLanguageActive = false;
   languageSubscription!: Subscription;
-  viewMode: 'perspective' | 'orthographic' = 'perspective';
+  viewMode: ViewMode = 'perspective';
 
-  toggleView(mode: 'perspective' | 'orthographic') {
+  toggleView(mode: ViewMode) {
     this.viewMode = mode;
   }
   private destroy$ = new Subject<void>();
