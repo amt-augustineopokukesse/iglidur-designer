@@ -15,10 +15,7 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { flagUrls } from '@iglidur-designer/utils';
 
-
-
 type ViewMode = 'perspective' | 'orthographic';
-
 
 @Component({
   selector: 'lib-header',
@@ -46,14 +43,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   selectedLanguage!: string;
   isLanguageActive = false;
   languageSubscription!: Subscription;
-<<<<<<< HEAD
   viewMode: ViewMode = 'perspective';
-=======
-  viewMode: 'perspective' | 'orthographic' = 'perspective';
   flagUrls = flagUrls;
   languageCode!: string;
   languageName!: string;
->>>>>>> 89eb987 (refactor: update translation flow to persist data)
 
   toggleView(mode: ViewMode) {
     this.viewMode = mode;
