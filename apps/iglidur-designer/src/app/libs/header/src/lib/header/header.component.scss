@@ -61,11 +61,26 @@
           color: $text-color-white;
         }
       }
-      
     }
-}
+  }
 }
 .custom-menu-item {
   width: 200px;
   @include flex-center(space-between, center);
+}
+
+.language {
+  @include flex-center(center);
+  width: auto;
+  gap: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  
+  .flag {
+    width: auto;
+    height: 20px;
+    object-fit: cover;
+  }
 }

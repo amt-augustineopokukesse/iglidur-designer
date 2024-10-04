@@ -34,9 +34,10 @@
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu" class="mat-menu" style="width: 400px; overflow: hidden;">
-        <button mat-menu-item style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-          <span style="flex-grow: 1;">English (EN)</span>
-          <mat-icon>chevron_right</mat-icon>
+        <button mat-menu-item style="display: flex; align-items: center; justify-content: space-between; width: 100%;" (click)="isLanguageActive = !isLanguageActive">
+          <span class="language"><img class="flag" [src]="getFlagUrl(languageCode)" [alt]="languageCode + ' flag'">
+            <p>{{languageName}}</p></span> 
+          <mat-icon iconPositionEnd>chevron_right</mat-icon>
         </button>
         <mat-divider></mat-divider>
         <p style="padding-left: 15px;">Camera:</p>
