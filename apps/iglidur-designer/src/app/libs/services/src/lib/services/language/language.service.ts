@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class LanguageService {
-  private languageSubject = new BehaviorSubject<string>('en-UK');
+  private languageSubject = new BehaviorSubject<string>(localStorage.getItem('language') || 'en-UK');
   language$ = this.languageSubject.asObservable();
   private loadedTranslations: Set<string> = new Set();
 
@@ -26,6 +26,7 @@ export class LanguageService {
   }
 
   setLanguage(language: string) {
+    localStorage.setItem('language', language);
     this.languageSubject.next(language);
   }
 }

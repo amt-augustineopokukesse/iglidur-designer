@@ -23,6 +23,9 @@
       ],
       "@iglidur-designer/services": [
         "apps/iglidur-designer/src/app/libs/services/src/index.ts"
+      ],
+      "@iglidur-designer/utils": [
+        "apps/iglidur-designer/src/app/libs/utils/src/index.ts"
       ]
     }
   },
