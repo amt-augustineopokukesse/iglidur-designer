@@ -34,7 +34,7 @@
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu" class="mat-menu" style="width: 400px; overflow: hidden;">
-        <button mat-menu-item style="display: flex; align-items: center; justify-content: space-between; width: 100%;" (click)="isLanguageActive = !isLanguageActive">
+        <button class="language-button" mat-menu-item  (click)="isLanguageActive = !isLanguageActive">
           <span class="language"><img class="flag" [src]="getFlagUrl(languageCode)" [alt]="languageCode + ' flag'">
             <p>{{languageName}}</p></span> 
           <mat-icon iconPositionEnd>chevron_right</mat-icon>
