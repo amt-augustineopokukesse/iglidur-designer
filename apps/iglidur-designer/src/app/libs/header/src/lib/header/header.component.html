@@ -33,7 +33,7 @@
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu" class="menu-button">
         <mat-icon class="menu-icon">more_vert</mat-icon>
       </button>
-      <mat-menu #menu="matMenu" class="mat-menu" style="width: 400px; overflow: hidden;">
+      <mat-menu #menu="matMenu" class="mat-menu" style="width: 400px; overflow: hidden; border-radius: 0%;">
         <button class="language-button" mat-menu-item  (click)="isLanguageActive = !isLanguageActive">
           <span class="language"><img class="flag" [src]="getFlagUrl(languageCode)" [alt]="languageCode + ' flag'">
             <p>{{languageName}}</p></span> 
