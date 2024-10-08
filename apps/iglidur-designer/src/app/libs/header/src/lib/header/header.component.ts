@@ -41,7 +41,7 @@ type ViewMode = 'perspective' | 'orthographic';
 export class HeaderComponent implements OnInit, OnDestroy {
   language!: string;
   selectedLanguage!: string;
-  isLanguageActive = true;
+  isLanguageActive = false;
   languageSubscription!: Subscription;
   viewMode: ViewMode = 'perspective';
   flagUrls = flagUrls;
