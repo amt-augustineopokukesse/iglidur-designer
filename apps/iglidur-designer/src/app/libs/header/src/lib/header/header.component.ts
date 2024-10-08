@@ -12,7 +12,6 @@ import { LanguagesComponent } from '../languages/languages.component';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { flagUrls } from '@iglidur-designer/utils';
 
 type ViewMode = 'perspective' | 'orthographic';

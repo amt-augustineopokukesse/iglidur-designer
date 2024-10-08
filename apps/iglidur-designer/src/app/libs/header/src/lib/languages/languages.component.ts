@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageService } from '@iglidur-designer/services';
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { flagUrls } from '@iglidur-designer/utils';
 
 @Component({
