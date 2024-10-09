@@ -14,6 +14,7 @@ import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FooterComponent } from '@iglidur-designer/header';
+import { SupportedLanguage } from '@iglidur-designer/interfaces';
 
 @Component({
   selector: 'app-model',
@@ -36,7 +37,7 @@ import { FooterComponent } from '@iglidur-designer/header';
   private camera!: THREE.PerspectiveCamera;
   private controls!: OrbitControls;
 
-  language!: string;
+  language!: SupportedLanguage;
   tools = '../../../assets/images/tools.png';
   files: File[] = [];
   previews: string[] = [];

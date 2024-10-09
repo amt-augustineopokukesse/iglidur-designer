@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
 import { Subject, takeUntil } from 'rxjs';
+import { SupportedLanguage } from '@iglidur-designer/interfaces';
 
 @Component({
   selector: 'lib-footer',
@@ -29,7 +30,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   rating = 0;
   stars = new Array(5);
   private destroy$ = new Subject<void>();
-  language!: string;
+  language!: SupportedLanguage;
 
   constructor(
     private translate: TranslateService,
