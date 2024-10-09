@@ -6,15 +6,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { Language } from '@iglidur-designer/interfaces';
+import { Languages, FlagUrls, LanguageCode } from '@iglidur-designer/interfaces';
 import { LanguageService } from '@iglidur-designer/services';
 import { LanguagesComponent } from '../languages/languages.component';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
+import { flagUrls } from '@iglidur-designer/utils';
 
 type ViewMode = 'perspective' | 'orthographic';
-
 
 @Component({
   selector: 'lib-header',
@@ -43,19 +43,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLanguageActive = false;
   languageSubscription!: Subscription;
   viewMode: ViewMode = 'perspective';
+  flagUrls = flagUrls;
+  languageCode!: string;
+  languageName!: string;
 
   toggleView(mode: ViewMode) {
     this.viewMode = mode;
   }
   private destroy$ = new Subject<void>();
 
-  languages: Language[] = [
-    { value: 'en-UK', viewValue: 'English (UK)' },
-    { value: 'en-US', viewValue: 'English (US)' },
-    { value: 'de-DE', viewValue: 'German' },
-    { value: 'ja-JP', viewValue: 'Japan' },
-    { value: 'fr-FR', viewValue: 'French' },
-  ];
+  languages: Languages = {
+    'en-UK': 'English (UK)',
+    'en-US': 'English (US)',
+    'de-DE': 'German',
+    'ja-JP': 'Japan',
+    'fr-FR': 'French',
+  
+  };
 
   constructor(
     private translate: TranslateService,
@@ -68,7 +72,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((language) => {
         this.translate.use('header.component.i18n');
         this.language = language;
+        this.languageCode = language.split('-')[1].toLowerCase();
+        this.languageName = this.getLanguageName(this.language as LanguageCode);
       });
+  }
+
+  getFlagUrl(code: string): string {
+    return this.flagUrls[code as keyof FlagUrls] || '';
+  }
+
+  getLanguageName(code: LanguageCode): string {
+    return this.languages[code];
   }
 
   ngOnDestroy(): void {

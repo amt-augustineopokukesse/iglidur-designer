@@ -61,11 +61,31 @@
           color: $text-color-white;
         }
       }
-      
     }
-}
+  }
 }
 .custom-menu-item {
   width: 200px;
   @include flex-center(space-between, center);
+}
+
+.language-button {
+  .language {
+    @include flex-center(null, center);
+    width: auto;
+    gap: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    
+    .flag {
+      width: auto;
+      height: 20px;
+      object-fit: cover;
+    }
+  }
+  mat-icon {
+    order: 2;
+  }
 }

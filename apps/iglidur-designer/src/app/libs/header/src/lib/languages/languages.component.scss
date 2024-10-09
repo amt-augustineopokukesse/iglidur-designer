@@ -8,21 +8,25 @@
   position: absolute;
   top: 0;
   left: 0;
+
   .header {
     @include flex-center(space-between, center);
     width: 75%;
     margin: 0 auto;
     margin-top: 3%;
+
     h1 {
       margin: 0;
       font-weight: 400;
     }
+
     .close {
       background-color: transparent;
       outline: none;
       border: none;
       cursor: pointer;
       @include flex-center;
+
       .close-icon {
         font-size: 32px;
         width: 32px;
@@ -36,22 +40,28 @@
     margin-top: 5%;
     @include flex-center(space-between, center);
     box-sizing: border-box;
+
     .country {
-      @include flex-center(space-between, center);
+      @include flex-center(null, center);
+      flex: 1;
       width: 20%;
       gap: 10px;
       background-color: transparent;
       border: none;
       cursor: pointer;
       box-sizing: border-box;
+      transition: font-weight 0.3s ease;
+
       &:hover {
         font-weight: bold;
       }
+      
       .flag {
         width: auto;
         height: 20px;
         object-fit: cover;
       }
+      
     }
   }
 }

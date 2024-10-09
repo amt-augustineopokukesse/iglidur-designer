@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { findFlagUrlByCountryName } from 'country-flags-svg';
 import { LanguageService } from '@iglidur-designer/services';
+import { flagUrls } from '@iglidur-designer/utils';
 
 @Component({
   selector: 'lib-languages',
@@ -15,13 +15,7 @@ import { LanguageService } from '@iglidur-designer/services';
 export class LanguagesComponent {
   constructor(private languageService: LanguageService) {}
   emitClose = output<boolean>();
-  flagUrls = {
-    uk: findFlagUrlByCountryName('United Kingdom'),
-    us: findFlagUrlByCountryName('United States'),
-    fr: findFlagUrlByCountryName('France'),
-    de: findFlagUrlByCountryName('Germany'),
-    jp: findFlagUrlByCountryName('Japan')
-  };
+  flagUrls = flagUrls;
 
   onClose() {
     this.emitClose.emit(true);
