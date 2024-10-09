@@ -37,7 +37,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
   private camera!: THREE.PerspectiveCamera;
   private controls!: OrbitControls;
 
-  language!: SupportedLanguage;
+  public language!: SupportedLanguage;
   tools = '../../../assets/images/tools.png';
   files: File[] = [];
   previews: string[] = [];

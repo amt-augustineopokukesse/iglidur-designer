@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from '../storage/storage.service';
-import { SupportedLanguage } from '@iglidur-designer/interfaces';
+import { StorageKeys, SupportedLanguage } from '@iglidur-designer/interfaces';
 
 
 
@@ -15,7 +15,7 @@ export class LanguageService {
   constructor(
     private storageService: StorageService
   ) {
-    const storedLanguage = this.storageService.getItem<SupportedLanguage>('language');
+    const storedLanguage = this.storageService.getItem<SupportedLanguage>(StorageKeys.LANGUAGE);
     this.languageSubject = new BehaviorSubject<SupportedLanguage>(storedLanguage || 'en-UK');
     this.language$ = this.languageSubject.asObservable();
   }
@@ -25,7 +25,7 @@ export class LanguageService {
   }
 
   setLanguage(language: SupportedLanguage): void {
-    this.storageService.setItem<SupportedLanguage>('language', language);
+    this.storageService.setItem<SupportedLanguage>(StorageKeys.LANGUAGE, language);
     this.languageSubject.next(language);
   }
 }

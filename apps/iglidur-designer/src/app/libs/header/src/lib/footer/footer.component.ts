@@ -30,7 +30,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   rating = 0;
   stars = new Array(5);
   private destroy$ = new Subject<void>();
-  language!: SupportedLanguage;
+  public language!: SupportedLanguage;
 
   constructor(
     private translate: TranslateService,

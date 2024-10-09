@@ -23,7 +23,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-  language!: SupportedLanguage;
+  public language!: SupportedLanguage;
   private destroy$ = new Subject<void>();
   links = [
     { name: 'MODEL', url: 'model' },

@@ -38,7 +38,7 @@ type ViewMode = 'perspective' | 'orthographic';
 })
 
 export class HeaderComponent implements OnInit, OnDestroy {
-  language!: SupportedLanguage;
+  public language!: SupportedLanguage;
   selectedLanguage!: string;
   isLanguageActive = false;
   languageSubscription!: Subscription;
@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.translate.use('header.component.i18n');
         this.language = language;
         this.languageCode = language.split('-')[1].toLowerCase();
-        this.languageName = this.getLanguageName(this.language as SupportedLanguage);
+        this.languageName = this.getLanguageName(this.language);
       });
   }
 
