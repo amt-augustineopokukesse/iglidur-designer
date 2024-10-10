@@ -1,32 +1,31 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { StorageService } from '../storage/storage.service';
+import { StorageKeys, SupportedLanguage } from '@iglidur-designer/interfaces';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
-  private languageSubject = new BehaviorSubject<string>(localStorage.getItem('language') || 'en-UK');
-  language$ = this.languageSubject.asObservable();
-  private loadedTranslations: Set<string> = new Set();
+  private languageSubject: BehaviorSubject<SupportedLanguage>;
+  language$: Observable<SupportedLanguage>;
 
-  constructor(private translate: TranslateService) {}
-
-  async loadTranslation(translationKey: string): Promise<void> {
-    if (this.loadedTranslations.has(translationKey)) {
-      return;
-    }
-
-    await this.translate.use(translationKey).toPromise();
-    this.loadedTranslations.add(translationKey);
+  constructor(
+    private storageService: StorageService
+  ) {
+    const storedLanguage = this.storageService.getItem<SupportedLanguage>(StorageKeys.LANGUAGE);
+    this.languageSubject = new BehaviorSubject<SupportedLanguage>(storedLanguage || 'en-UK');
+    this.language$ = this.languageSubject.asObservable();
   }
 
-  getLanguage() {
+  getLanguage(): SupportedLanguage {
     return this.languageSubject.value;
   }
 
-  setLanguage(language: string) {
-    localStorage.setItem('language', language);
+  setLanguage(language: SupportedLanguage): void {
+    this.storageService.setItem<SupportedLanguage>(StorageKeys.LANGUAGE, language);
     this.languageSubject.next(language);
   }
 }

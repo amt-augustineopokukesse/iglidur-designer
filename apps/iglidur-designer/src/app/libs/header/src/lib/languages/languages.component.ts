@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageService } from '@iglidur-designer/services';
 import { flagUrls } from '@iglidur-designer/utils';
+import { SupportedLanguage } from '@iglidur-designer/interfaces';
 
 @Component({
   selector: 'lib-languages',
@@ -21,7 +22,7 @@ export class LanguagesComponent {
     this.emitClose.emit(true);
   }
 
-  onSelectLanguage(language: string) {
+  onSelectLanguage(language: SupportedLanguage) {
     this.languageService.setLanguage(language);
     this.emitClose.emit(false);
   }

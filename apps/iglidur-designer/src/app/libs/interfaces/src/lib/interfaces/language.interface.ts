@@ -1,7 +1,7 @@
-export type LanguageCode = 'en-UK' | 'en-US' | 'de-DE' | 'ja-JP' | 'fr-FR';
+export type SupportedLanguage = 'en-UK' | 'en-US' | 'de-DE' | 'ja-JP' | 'fr-FR';
 
 export type Languages = {
-  [K in LanguageCode]: string;
+  [K in SupportedLanguage]: string;
 };
 
 export interface FlagUrls {

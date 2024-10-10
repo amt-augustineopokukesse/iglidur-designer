@@ -6,7 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { Languages, FlagUrls, LanguageCode } from '@iglidur-designer/interfaces';
+import { Languages, FlagUrls, SupportedLanguage } from '@iglidur-designer/interfaces';
 import { LanguageService } from '@iglidur-designer/services';
 import { LanguagesComponent } from '../languages/languages.component';
 import { Subject, Subscription, takeUntil } from 'rxjs';
@@ -38,7 +38,7 @@ type ViewMode = 'perspective' | 'orthographic';
 })
 
 export class HeaderComponent implements OnInit, OnDestroy {
-  language!: string;
+  public language!: SupportedLanguage;
   selectedLanguage!: string;
   isLanguageActive = false;
   languageSubscription!: Subscription;
@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.translate.use('header.component.i18n');
         this.language = language;
         this.languageCode = language.split('-')[1].toLowerCase();
-        this.languageName = this.getLanguageName(this.language as LanguageCode);
+        this.languageName = this.getLanguageName(this.language);
       });
   }
 
@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return this.flagUrls[code as keyof FlagUrls] || '';
   }
 
-  getLanguageName(code: LanguageCode): string {
+  getLanguageName(code: SupportedLanguage): string {
     return this.languages[code];
   }
 

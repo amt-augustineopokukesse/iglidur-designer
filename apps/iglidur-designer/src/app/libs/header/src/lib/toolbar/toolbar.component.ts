@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '@iglidur-designer/services';
 import { Subject, takeUntil } from 'rxjs';
+import { SupportedLanguage } from '@iglidur-designer/interfaces';
 
 @Component({
   selector: 'lib-toolbar',
@@ -22,7 +23,7 @@ import { Subject, takeUntil } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-  language!: string;
+  public language!: SupportedLanguage;
   private destroy$ = new Subject<void>();
   links = [
     { name: 'MODEL', url: 'model' },
