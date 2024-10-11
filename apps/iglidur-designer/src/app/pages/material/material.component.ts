@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { selectModelUrl } from '../../+state/store.selectors';
 
 @Component({
@@ -13,12 +12,7 @@ import { selectModelUrl } from '../../+state/store.selectors';
   styleUrl: './material.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MaterialComponent implements OnInit {
-  public modelUrl$!: Observable<string>;
-
-  constructor(private store: Store) {}
-
-  public ngOnInit(): void {
-    this.modelUrl$ = this.store.pipe(select(selectModelUrl));
-  }
+export class MaterialComponent {
+  private readonly store = inject(Store);
+  public modelUrl = this.store.selectSignal(selectModelUrl);
 }
