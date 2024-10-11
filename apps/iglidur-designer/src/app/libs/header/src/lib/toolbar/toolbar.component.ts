@@ -31,7 +31,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     { name: 'POST-PROCESSING', url: 'postprocessing' },
     { name: 'PRODUCIBILITY', url: 'producibility' },
   ];
-  activeLink = this.links[0].name;
+  public activeLink = this.links[0].name;
 
   constructor(
     private translate: TranslateService,

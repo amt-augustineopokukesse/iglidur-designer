@@ -30,7 +30,8 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
   styleUrl: './model.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })export class ModelComponent implements AfterViewInit, OnInit, OnDestroy {
-  @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
+  @ViewChild('rendererContainer', { static: true }) 
+  private rendererContainer!: ElementRef;
 
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
@@ -38,13 +39,13 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
   private controls!: OrbitControls;
 
   public language!: SupportedLanguage;
-  tools = '../../../assets/images/tools.png';
-  files: File[] = [];
-  previews: string[] = [];
+  public tools = '../../../assets/images/tools.png';
+  private files: File[] = [];
+  private previews: string[] = [];
   private destroy$ = new Subject<void>();
-  modelUrl!: string;
-  screenshotUrl: string | null = null;
-  screenshots$!: Observable<string[]>;
+  public modelUrl!: string;
+  public screenshotUrl: string | null = null;
+  public screenshots$!: Observable<string[]>;
   
   private modelLoaded = false;
   constructor(
@@ -55,7 +56,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
     private cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.languageService.language$
       .pipe(takeUntil(this.destroy$))
       .subscribe((language) => {
@@ -70,11 +71,11 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
       
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     this.initThree();    
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -106,7 +107,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
     this.renderer.render(this.scene, this.camera);
   }
 
-  onFileSelected(event: Event): void {
+  public onFileSelected(event: Event): void {
     const {files} = event.target as HTMLInputElement;
 
     if (files && files.length > 0) {
@@ -160,7 +161,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
   }
 
 
-  ensureModelRendered(): Observable<void> {
+  private ensureModelRendered(): Observable<void> {
     return new Observable<void>((observer) => {
       const checkIfRendered = () => {
         const viewer = document.getElementById('rendererContainer');
@@ -175,7 +176,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
     });
   }
 
-  screenshot(): void {
+  private screenshot(): void {
     const modelElement = this.rendererContainer.nativeElement as HTMLDivElement;
   
     if (modelElement && this.modelLoaded) {  
@@ -195,7 +196,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
     }
   }
 
-  onScreenshotClick(): void {
+  public onScreenshotClick(): void {
     this.router.navigate(['/material']);
   }
 
