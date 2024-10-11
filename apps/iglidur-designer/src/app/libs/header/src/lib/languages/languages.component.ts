@@ -15,8 +15,8 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
 })
 export class LanguagesComponent {
   constructor(private languageService: LanguageService) {}
-  emitClose = output<boolean>();
-  flagUrls = flagUrls;
+  public emitClose = output<boolean>();
+  public flagUrls = flagUrls;
 
   onClose() {
     this.emitClose.emit(true);

@@ -27,8 +27,8 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent implements OnInit, OnDestroy {
-  rating = 0;
-  stars = new Array(5);
+  public rating = 0;
+  public stars = new Array(5);
   private destroy$ = new Subject<void>();
   public language!: SupportedLanguage;
 

@@ -4,12 +4,12 @@ import { FooterComponent, HeaderComponent, ToolbarComponent } from '@iglidur-des
 
 @Component({
   standalone: true,
-    imports: [RouterModule, HeaderComponent, ToolbarComponent, FooterComponent],
+  imports: [RouterModule, HeaderComponent, ToolbarComponent, FooterComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'iglidur-designer';
+  public title = 'iglidur-designer';
 }

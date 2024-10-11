@@ -14,11 +14,11 @@ import { selectModelUrl } from '../../+state/store.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialComponent implements OnInit {
-  modelUrl$!: Observable<string>;
+  public modelUrl$!: Observable<string>;
 
   constructor(private store: Store) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.modelUrl$ = this.store.pipe(select(selectModelUrl));
   }
 }

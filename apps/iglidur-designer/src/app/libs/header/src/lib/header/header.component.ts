@@ -39,13 +39,13 @@ type ViewMode = 'perspective' | 'orthographic';
 
 export class HeaderComponent implements OnInit, OnDestroy {
   public language!: SupportedLanguage;
-  selectedLanguage!: string;
-  isLanguageActive = false;
-  languageSubscription!: Subscription;
-  viewMode: ViewMode = 'perspective';
-  flagUrls = flagUrls;
-  languageCode!: string;
-  languageName!: string;
+  private selectedLanguage!: string;
+  public isLanguageActive = false;
+  private languageSubscription!: Subscription;
+  public viewMode: ViewMode = 'perspective';
+  private flagUrls = flagUrls;
+  public languageCode!: string;
+  public languageName!: string;
 
   toggleView(mode: ViewMode) {
     this.viewMode = mode;
