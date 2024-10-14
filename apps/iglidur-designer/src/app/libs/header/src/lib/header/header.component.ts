@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { Languages, FlagUrls, SupportedLanguage } from '@iglidur-designer/interfaces';
 import { LanguageService } from '@iglidur-designer/services';
 import { LanguagesComponent } from '../languages/languages.component';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { flagUrls } from '@iglidur-designer/utils';
@@ -39,9 +39,7 @@ type ViewMode = 'perspective' | 'orthographic';
 
 export class HeaderComponent implements OnInit, OnDestroy {
   public language!: SupportedLanguage;
-  private selectedLanguage!: string;
   public isLanguageActive = false;
-  private languageSubscription!: Subscription;
   public viewMode: ViewMode = 'perspective';
   private flagUrls = flagUrls;
   public languageCode!: string;

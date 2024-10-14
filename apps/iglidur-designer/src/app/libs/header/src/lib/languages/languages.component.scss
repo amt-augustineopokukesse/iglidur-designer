@@ -34,6 +34,7 @@
       }
     }
   }
+
   .languages {
     width: 75%;
     margin: 0 auto;
@@ -43,8 +44,9 @@
 
     .country {
       @include flex-center(null, center);
-      flex: 1;
-      width: 20%;
+      // flex: 1;
+      width: auto;
+      // margin: 5px;
       gap: 10px;
       background-color: transparent;
       border: none;
@@ -53,13 +55,19 @@
       transition: font-weight 0.3s ease;
 
       &:hover {
-        font-weight: bold;
+        -webkit-text-stroke: 0.5px black;
       }
       
       .flag {
         width: auto;
         height: 20px;
         object-fit: cover;
+      }
+      
+      .country-name {
+        margin: 0%;
+
+        
       }
       
     }

@@ -11,10 +11,25 @@
     </button>
   </div>
   <div class="languages">
-    <button class="country" (click)="onSelectLanguage('en-UK')"><img class="flag" src="{{flagUrls.uk}}" alt="UK Flag"> United Kingdom (English)</button>
-    <button class="country" (click)="onSelectLanguage('en-US')"><img class="flag" src="{{flagUrls.us}}" alt="US Flag"> United States (English)</button>
-    <button class="country" (click)="onSelectLanguage('fr-FR')"><img class="flag" src="{{flagUrls.fr}}" alt="France Flag"> France (French)</button>
-    <button class="country" (click)="onSelectLanguage('de-DE')"><img class="flag" src="{{flagUrls.de}}" alt="Germany Flag"> Germany (Deutsch)</button>
-    <button class="country" (click)="onSelectLanguage('ja-JP')"><img class="flag" src="{{flagUrls.jp}}" alt="Japan Flag"> 日本 (日本国)</button>
+    <button class="country" (click)="onSelectLanguage('en-UK')">
+      <img class="flag" src="{{ flagUrls.uk }}" alt="UK Flag" />
+      <p class="country-name">United Kingdom (English)</p>
+    </button>
+    <button class="country" (click)="onSelectLanguage('en-US')">
+      <img class="flag" src="{{ flagUrls.us }}" alt="US Flag" />
+      <p class="country-name">United States (English)</p>
+    </button>
+    <button class="country" (click)="onSelectLanguage('fr-FR')">
+      <img class="flag" src="{{ flagUrls.fr }}" alt="France Flag" />
+      <p class="country-name">France (French)</p>
+    </button>
+    <button class="country" (click)="onSelectLanguage('de-DE')">
+      <img class="flag" src="{{ flagUrls.de }}" alt="Germany Flag" />
+      <p class="country-name">Germany (Deutsch)</p>
+    </button>
+    <button class="country" (click)="onSelectLanguage('ja-JP')">
+      <img class="flag" src="{{ flagUrls.jp }}" alt="Japan Flag" />
+      <p class="country-name">日本 (日本国)</p>
+    </button>
   </div>
 </div>
