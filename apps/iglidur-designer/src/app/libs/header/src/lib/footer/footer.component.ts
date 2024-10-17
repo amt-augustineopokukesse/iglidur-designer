@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,9 +28,14 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
 })
 export class FooterComponent implements OnInit, OnDestroy {
   public rating = 0;
-  public stars = new Array(5);
+  // public stars = new Array(5);
   private destroy$ = new Subject<void>();
   public language!: SupportedLanguage;
+  public ratingSelected = output<number>();
+
+  stars = Array(5).fill({ filled: false });
+  hoverIndex = -1;
+  selectedIndex = -1;
 
   constructor(
     private translate: TranslateService,
@@ -53,7 +58,21 @@ export class FooterComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  rate(rating: number) {
-    this.rating = rating;
+  // rate(rating: number) {
+  //   this.rating = rating;
+  // }
+
+  onStarHover(index: number): void {
+    this.hoverIndex = index;
+  }
+
+  onStarLeave(): void {
+    this.hoverIndex = -1;
+  }
+
+  onStarClick(index: number): void {
+    this.selectedIndex = index;
+    this.stars.forEach((star, i) => star.filled = i <= index);
+    this.ratingSelected.emit(index + 1);
   }
 }
