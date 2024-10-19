@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, output } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,6 +22,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
     FormsModule,
     MatButtonModule,
     TranslateModule,
+    ReactiveFormsModule
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
@@ -28,10 +30,13 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
 })
 export class FooterComponent implements OnInit, OnDestroy {
   public rating = 0;
-  // public stars = new Array(5);
   private destroy$ = new Subject<void>();
   public language!: SupportedLanguage;
   public ratingSelected = output<number>();
+  public ratingForm: FormGroup = new FormGroup({
+    // rating: new FormControl(this.rating),
+    feedback: new FormControl('', [Validators.required]),
+  });
 
   stars = Array(5).fill({ filled: false });
   hoverIndex = -1;
@@ -57,10 +62,6 @@ export class FooterComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  // rate(rating: number) {
-  //   this.rating = rating;
-  // }
 
   onStarHover(index: number): void {
     this.hoverIndex = index;

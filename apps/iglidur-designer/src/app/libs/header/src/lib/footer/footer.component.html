@@ -1,6 +1,6 @@
 <div class="footer">
   <p class="footer-text">{{ 'FOOTER.TITLE.' + language | translate }}</p>
-  <div class="star-rating">
+  <form [formGroup]="ratingForm" class="rating-and-feedback">
     <div class="rating">
       @for (star of stars; track $index; let i = $index) {
       <span
@@ -8,6 +8,7 @@
         (mouseenter)="onStarHover(i)"
         (mouseleave)="onStarLeave()"
         (click)="onStarClick(i)"
+
         [class.filled]="star.filled || i <= hoverIndex!"
       >
         star
@@ -15,20 +16,21 @@
       }
     </div>
     <div class="feedback-container">
-      <form class="feedback-form">
+      <div class="feedback-form">
         <mat-form-field appearance="outline">
           <textarea
             matInput
             draggable="false"
             placeholder="{{ 'FOOTER.PLACEHOLDER.' + language | translate }}"
             value=""
+            formControlName="feedback"
           ></textarea>
         </mat-form-field>
-        <button mat-button color="accent">
+        <button [disabled]="ratingForm.invalid" mat-button color="accent" [style]="!ratingForm.valid ? 'color: grey' : ''">
           {{ 'FOOTER.SUBMIT.' + language | translate }}
         </button>
-      </form>
-      <div class="copyright">© 2024 igus® GmbH</div>
+      </div>
     </div>
-  </div>
+  </form>
+  <div class="copyright">© 2024 igus® GmbH</div>
 </div>
