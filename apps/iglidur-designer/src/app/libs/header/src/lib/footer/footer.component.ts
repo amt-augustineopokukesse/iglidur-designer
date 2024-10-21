@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,6 +22,7 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
     FormsModule,
     MatButtonModule,
     TranslateModule,
+    ReactiveFormsModule
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
@@ -28,9 +30,16 @@ import { SupportedLanguage } from '@iglidur-designer/interfaces';
 })
 export class FooterComponent implements OnInit, OnDestroy {
   public rating = 0;
-  public stars = new Array(5);
   private destroy$ = new Subject<void>();
   public language!: SupportedLanguage;
+  public ratingSelected!: number;
+  public ratingForm: FormGroup = new FormGroup({
+    feedback: new FormControl('', [Validators.required]),
+  });
+
+  stars = Array(5).fill(0);
+  hoverIndex = -1;
+  selectedIndex = -1;
 
   constructor(
     private translate: TranslateService,
@@ -53,7 +62,20 @@ export class FooterComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  rate(rating: number) {
-    this.rating = rating;
+  onStarHover(index: number): void {
+    this.hoverIndex = index;
+  }
+
+  onStarLeave(): void {
+    this.hoverIndex = -1;
+  }
+
+  onStarClick(index: number): void {
+    this.selectedIndex = index;
+    this.ratingSelected = index + 1;
+  }
+
+  isFilled(index: number): boolean {
+    return index <= (this.hoverIndex !== -1 ? this.hoverIndex : this.selectedIndex);
   }
 }

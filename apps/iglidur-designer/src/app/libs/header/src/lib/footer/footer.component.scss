@@ -16,63 +16,18 @@
     font-weight: 500;
   }
 
-  .rating {
-    display: flex;
-    
-    mat-icon {
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      font-size: 40px;
-    }
-
-    .filled {
-      color: gold;
-    }
-  }
-
-  .rating-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  .rating-and-feedback {
     @include flex-center;
     flex-direction: column;
 
-    .rating-form-field {
-      width: 100%;
-      position: relative;
-      --mdc-filled-text-field-container-color: transparent;
-      --mdc-filled-text-field-focus-active-indicator-color: transparent;
-      --mdc-filled-text-field-active-indicator-height: 0;
-      --mdc-filled-text-field-focus-active-indicator-height: 0;
-      --mdc-filled-text-field-focus-state-layer-color: transparent;
-      --mdc-filled-text-field-hover-state-layer-color: transparent;
+    .material-icons {
+      font-size: 50px;
+      color: #555;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
 
-      textarea {
-        width: 268px;
-        height: 80px;
-        background-color: rgb(136, 136, 136, 0.2);
-        color: #888888;
-        border: 1px solid rgb(136, 136, 136, 0.4);
-        border-radius: 4px;
-        padding: 16px;
-        box-sizing: border-box;
-        position: relative;
-        left: 20%;
-        resize: none;
-
-        &::placeholder {
-          color: #888888 !important;
-        }
-
-        &:hover {
-          border: 1px solid #888888;
-        }
-
-        &:focus {
-          border: 2px solid $primary-color;
-          outline: none;
-        }
+      &.filled {
+        color: gold;
       }
     }
   }
@@ -85,3 +40,81 @@
   }
 }
 
+.feedback-container {
+  @include flex-center;
+  flex-direction: column;
+  background-color: transparent;
+
+  .feedback-form {
+    background-color: transparent;
+
+    @include flex-center(space-between, center);
+    flex-direction: column;
+  }
+}
+
+.copyright {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+}
+
+::ng-deep {
+  .mat-mdc-form-field {
+    --mdc-outlined-text-field-outline-color: transparent;
+    --mdc-outlined-text-field-container-color: transparent;
+
+    .mdc-notched-outline {
+      &__leading,
+      &__notch,
+      &__trailing {
+        border-width: 0 !important;
+      }
+    }
+
+    .mat-mdc-form-field-flex {
+      background-color: transparent;
+      border: 2px solid #555;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+      padding: 0 !important;
+      min-width: 300px;
+      max-width: 500px;
+      width: 100%;
+      height: 80px;
+      margin-top: 20px !important;
+
+    }
+
+    &:hover .mat-mdc-form-field-flex {
+      border-color: #777;
+    }
+
+    &.mat-focused .mat-mdc-form-field-flex {
+      border-color: $primary-color;
+    }
+
+    .mat-mdc-form-field-infix {
+      padding: 0 !important;
+      border-top: 0 !important;
+      height: 100%;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      padding: 0 !important;
+    }
+
+    textarea.mat-mdc-input-element {
+      padding: 8px !important;
+      resize: none;
+      background-color: rgba(136, 136, 136, 0.2);
+      color: #888888 !important;
+      width: 100%;
+      height: 100% !important;
+
+      &::placeholder {
+        color: #888888 !important;
+      }
+    }
+  }
+}

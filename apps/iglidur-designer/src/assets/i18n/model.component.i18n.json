@@ -38,11 +38,11 @@
     }
   },
   "FILEFORMAT": {
-    "de-DE": "Dateiformat: .stp oder .step (max. 75MB)",
-    "en-UK": "File format: .stp or .step (max. 75MB)",
-    "en-US": "File format: .stp or .step (max. 75MB)",
-    "fr-FR": "Format de fichier : .stp ou .step (max. 75MB)",
-    "ja-JP": "ファイル形式：.stpまたは.step (最大75MB)"
+    "de-DE": "Dateiformat: .stl (max. 75MB)",
+    "en-UK": "File format: .stl (max. 75MB)",
+    "en-US": "File format: .stl (max. 75MB)",
+    "fr-FR": "Format de fichier : .stl (max. 75MB)",
+    "ja-JP": "ファイル形式：.stl (最大75MB)"
   },
   "MODELSAMPLE": {
     "TEXT1": {

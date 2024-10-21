@@ -1,22 +1,36 @@
 <div class="footer">
-    <p class="footer-text">{{ 'FOOTER.TITLE.' + language | translate }}</p>
+  <p class="footer-text">{{ 'FOOTER.TITLE.' + language | translate }}</p>
+  <form [formGroup]="ratingForm" class="rating-and-feedback">
     <div class="rating">
       @for (star of stars; track $index; let i = $index) {
-        <mat-icon (click)="rate(i + 1)" [class.filled]="i < rating">
-          {{ i < rating ? 'star' : 'star_border' }}
-        </mat-icon>
+      <span
+        class="material-icons"
+        (mouseenter)="onStarHover(i)"
+        (mouseleave)="onStarLeave()"
+        (click)="onStarClick(i)"
+
+        [class.filled]="isFilled(i)"
+      >
+        star
+      </span>
       }
     </div>
-    <form class="rating-form">
-      <mat-form-field class="rating-form-field">
-        <textarea
-          matInput
-          draggable="false"
-          placeholder="{{ 'FOOTER.PLACEHOLDER.' + language | translate }}"
-          value=""
-        ></textarea>
-      </mat-form-field>
-      <button mat-button color="accent">{{ 'FOOTER.SUBMIT.' + language | translate }}</button>
-    </form>
-    <p class="copyright-text">© 2024 igus® GmbH</p>
-  </div>
+    <div class="feedback-container">
+      <div class="feedback-form">
+        <mat-form-field appearance="outline">
+          <textarea
+            matInput
+            draggable="false"
+            placeholder="{{ 'FOOTER.PLACEHOLDER.' + language | translate }}"
+            value=""
+            formControlName="feedback"
+          ></textarea>
+        </mat-form-field>
+        <button [disabled]="ratingForm.invalid" mat-button color="accent" [style]="!ratingForm.valid ? 'color: grey' : ''">
+          {{ 'FOOTER.SUBMIT.' + language | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="copyright">© 2024 igus® GmbH</div>
+</div>
