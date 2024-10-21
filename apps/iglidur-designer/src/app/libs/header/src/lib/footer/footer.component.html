@@ -9,7 +9,7 @@
         (mouseleave)="onStarLeave()"
         (click)="onStarClick(i)"
 
-        [class.filled]="star.filled || i <= hoverIndex!"
+        [class.filled]="isFilled(i)"
       >
         star
       </span>

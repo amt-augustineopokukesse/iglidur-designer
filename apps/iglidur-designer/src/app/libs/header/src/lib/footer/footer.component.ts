@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,13 +32,12 @@ export class FooterComponent implements OnInit, OnDestroy {
   public rating = 0;
   private destroy$ = new Subject<void>();
   public language!: SupportedLanguage;
-  public ratingSelected = output<number>();
+  public ratingSelected!: number;
   public ratingForm: FormGroup = new FormGroup({
-    // rating: new FormControl(this.rating),
     feedback: new FormControl('', [Validators.required]),
   });
 
-  stars = Array(5).fill({ filled: false });
+  stars = Array(5).fill(0);
   hoverIndex = -1;
   selectedIndex = -1;
 
@@ -73,7 +72,10 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   onStarClick(index: number): void {
     this.selectedIndex = index;
-    this.stars.forEach((star, i) => star.filled = i <= index);
-    this.ratingSelected.emit(index + 1);
+    this.ratingSelected = index + 1;
+  }
+
+  isFilled(index: number): boolean {
+    return index <= (this.hoverIndex !== -1 ? this.hoverIndex : this.selectedIndex);
   }
 }
